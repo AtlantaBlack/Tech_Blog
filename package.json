@@ -1,0 +1,32 @@
+{
+  "name": "tech-blog",
+  "version": "1.0.0",
+  "description": "A Wordpress-style blogging platform, but for devs!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AtlantaBlack/Tech_Blog.git"
+  },
+  "keywords": [
+    "tech",
+    "blog",
+    "javascript",
+    "node",
+    "express",
+    "mysql",
+    "sequelize",
+    "full",
+    "stack",
+    "app"
+  ],
+  "author": "Sushan Yue",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AtlantaBlack/Tech_Blog/issues"
+  },
+  "homepage": "https://github.com/AtlantaBlack/Tech_Blog#readme"
+}
