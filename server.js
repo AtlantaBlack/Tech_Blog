@@ -43,10 +43,27 @@ app.get('/', async (req, res) => {
 app.get('/api/users', async (req, res) => {
   try {
     const userData = await User.findAll({
+      // attributes: {
+      //   exclude: ['password']
+      // },
       include: { model: Post }
     });
 
     res.status(200).send(userData);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+app.get('/api/posts', async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      include: {
+        model: User
+      }
+    });
+
+    res.status(200).send(postData);
   } catch (error) {
     res.status(500).send(error);
   }
