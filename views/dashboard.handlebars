@@ -1,0 +1,83 @@
+{{!-- if logged in --}}
+<div class="container">
+
+  {{!-- welcome msg --}}
+  <div class="row">
+    <div class="twelve columns">
+      <h3>Welcome, NAME</h3>
+    </div>
+  </div>
+
+  {{!-- create new blog post --}}
+  <div class="row">
+    <div class="twelve columns">
+      <h4>Create a new blog post:</h4>
+      <form>
+        <label for="post-title">Title:</label>
+        <input type="text" id="post-title" class="u-full-width">
+
+        <label for="post-content">Content:</label>
+        <textarea id="post-content" class="u-full-width"></textarea>
+
+        <button class="button-primary" type="submit">Post</button>
+      </form>
+    </div>
+  </div>
+
+
+  {{!-- if there are blog posts --}}
+
+  {{!-- {{#if posts.length}} --}}
+  <div class="row">
+    <div class="twelve columns">
+      <h4>Previous posts:</h4>
+    </div>
+  </div>
+
+  {{!-- {{#each posts as |post|}}
+  {{> post-details}}
+  {{/each}} --}}
+
+
+  <a href="/post/POST-ID">
+    <div class="card border-blue">
+      <div class="row card-header bottom-accent">
+        <div class="two-thirds column border-greenyellow">
+          <h5 class="post-title">POST-TITLE</h5>
+        </div>
+        <div class="one-third column border-orange">
+          <h6 class="post-author">posted by PERSON NAME on DD/MM/YYYY</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <p>POST-CONTENT</p>
+        </div>
+      </div>
+    </div>
+  </a>
+
+
+  <a href="/post/POST-ID">
+    <div class="card border-blue">
+      <div class="row card-header bottom-accent">
+        <div class="two-thirds column border-greenyellow">
+          <h5 class="post-title">POST-TITLE</h5>
+        </div>
+        <div class="one-third column border-orange">
+          <h6 class="post-author">posted by PERSON NAME on DD/MM/YYYY</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <p>POST-CONTENT</p>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  {{!-- {{/if}} --}}
+</div>
+
+{{!--
+<script src="./js/profile.js"></script> --}}

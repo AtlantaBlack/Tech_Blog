@@ -8,8 +8,6 @@
 
 .custom-a {
   color: var(--deep);
-  /* text-decoration: none; */
-  /* padding: 1rem 0.5rem; */
   border: 2px solid var(--deep);
 }
 
@@ -43,9 +41,12 @@ header h1 {
   flex: 0 0 auto;
 } */
 
+.bottom-accent {
+  border-bottom: 2px solid var(--accent);
+}
+
 .card-header {
   color: var(--grey);
-  border-bottom: 2px solid var(--accent);
 }
 
 .post-title {

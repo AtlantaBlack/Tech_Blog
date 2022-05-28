@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', async (req, res) => {
-  res.render('homepage');
+  res.render('dashboard');
 })
 
 sequelize.sync({ force: false }).then(() => {
