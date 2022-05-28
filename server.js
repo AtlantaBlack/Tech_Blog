@@ -8,6 +8,9 @@ const exphbs = require('express-handlebars');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+// FOR TESTING API CALLS
+const { User, Post } = require('./models');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -35,6 +38,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', async (req, res) => {
   res.render('dashboard');
 })
+
+// TESTING RESPONSES RECEIVED
+app.get('/api/users', async (req, res) => {
+  try {
+    const userData = await User.findAll({
+      include: { model: Post }
+    });
+
+    res.status(200).send(userData);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`App now listening on port ${PORT}`));
