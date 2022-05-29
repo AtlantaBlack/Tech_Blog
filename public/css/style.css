@@ -60,6 +60,11 @@ header h1 {
   margin-bottom: 0;
 }
 
+.comment-title {
+  background-color: var(--grey);
+  color: var(--deep);
+}
+
 
 
 .border-red {

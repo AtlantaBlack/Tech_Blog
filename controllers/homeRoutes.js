@@ -31,33 +31,36 @@ router.get('/post/:id', async (req, res) => {
     const postId = req.params.id;
 
     const postData = await Post.findByPk(postId, {
-      include: [
-        {
-          model: User,
-          attributes: ['username']
-        },
-        { model: Comment }
-      ]
+      include: [{
+        model: User,
+        attributes: ['username']
+      }]
+    });
+
+    const commentData = await Comment.findAll({
+      where: {
+        post_id: postId
+      },
+      include: {
+        model: User,
+        attributes: ['username']
+      }
     });
 
     const selectedPost = postData.get({ plain: true });
 
-    // const commentData = await Comment.findAll({
-    //   where: {
-    //     post_id: postId
-    //   }
-    // });
+    const postComments = commentData.map(comment => comment.get({ plain: true }));
 
-    // const postComments = commentData.map(comment => comment.get({ plain: true }));
+    // console.log(`\n---HOME ROUTE: SELECTED POST`);
+    // console.log(selectedPost);
 
-    console.log(`\n---HOME ROUTE: SELECTED POST`);
-    console.log(selectedPost);
+    console.log(`\n---HOME ROUTE: COMMENTS`);
+    console.log(postComments);
 
-    // console.log(`\n---HOME ROUTE: ASSOCIATED COMMENTS`);
-    // console.log(postComments);
 
     res.render('post', {
-      selectedPost
+      ...selectedPost,
+      postComments
     });
 
   } catch (error) {
