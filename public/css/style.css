@@ -56,6 +56,8 @@ header h1 {
 .post-author {
   font-size: 90%;
   text-align: right;
+  padding-top: 0.5rem;
+  margin-bottom: 0;
 }
 
 

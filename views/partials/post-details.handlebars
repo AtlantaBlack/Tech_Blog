@@ -5,28 +5,29 @@
     <div class="row card-header bottom-accent">
       {{!-- post title --}}
       <div class="two-thirds column border-greenyellow">
-        <h5 class="post-title">{{post_title}}</h5>
+        <h5 class="post-title">{{postTitle}}</h5>
       </div>
       {{!-- post author --}}
       <div class="one-third column border-orange">
-        <h6 class="post-author">posted by {{user.username}} on {{date_created}}</h6>
+        <h6 class="post-author">posted by {{user.username}} on {{format_date date_created}}</h6>
       </div>
     </div>
     {{!-- post content --}}
     <div class="row">
       <div class="twelve columns">
-        <p>{{post_content}}</p>
+        <p>{{postContent}}</p>
       </div>
     </div>
   </a>
 </div>
+
 
 {{!-- <div class="container card border-blue">
   <a href="/post/{{post.id}}">
     <div class="row card-header bottom-accent">
 
       <div class="two-thirds column border-greenyellow">
-        <h5 class="post-title">{{post.post_title}}</h5>
+        <h5 class="post-title">{{post.postTitle}}</h5>
       </div>
       <div class="one-third column border-orange">
         <h6 class="post-author">posted by {{post.user.username}} on {{post.date_created}}</h6>
@@ -34,7 +35,7 @@
     </div>
     <div class="row">
       <div class="twelve columns">
-        <p>{{post.post_content}}</p>
+        <p>{{post.postContent}}</p>
       </div>
     </div>
   </a>

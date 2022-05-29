@@ -17,13 +17,46 @@ router.get('/', async (req, res) => {
   }
 });
 
+// posting to api/users
+router.post('/', async (req, res) => {
+
+  try {
+    // console.log(`\n---REQ.BODY SIGNUP?`)
+    // console.log(req.body);
+
+    const { username, email, password } = req.body;
+
+    if (username && email && password) {
+      const newUser = await User.create(req.body);
+
+      req.session.save(() => {
+        req.session.user_id = newUser.id;
+        req.session.logged_in = true;
+
+        // console.log(`\n---REQ.SESSION NEW USER`);
+        // console.log(newUser);
+
+        res.status(200).json(newUser);
+      })
+    } else {
+      alert('Signup failed. Please enter a valid username, email, and password.');
+    }
+  } catch (error) {
+    // console.log(`\n---ERROR:`);
+    // console.log(error);
+    res.status(500).json(error);
+  }
+
+
+})
+
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    console.log(`\n---USER_ROUTE LOGIN: EMAIL/PASSWORD`);
-    console.log(email);
-    console.log(password);
+    // console.log(`\n---USER_ROUTE LOGIN: EMAIL/PASSWORD`);
+    // console.log(email);
+    // console.log(password);
 
     const returningUser = await User.scope('withPassword').findOne({
       where: {

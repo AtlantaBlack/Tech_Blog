@@ -11,11 +11,11 @@ Post.init(
       primaryKey: true,
       autoIncrement: true
     },
-    post_title: {
+    postTitle: {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    post_content: {
+    postContent: {
       type: DataTypes.TEXT,
       allowNull: false
     },

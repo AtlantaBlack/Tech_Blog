@@ -2,6 +2,8 @@
 const addNewBlogPost = async (event) => {
   event.preventDefault();
 
+  console.log('DASHBOARD NEW POST CLICK');
+
   const postTitle = document.getElementById('post-title').value.trim();
   const postContent = document.getElementById('post-content').value.trim();
 
@@ -25,3 +27,7 @@ const addNewBlogPost = async (event) => {
 // update old post
 
 // delete old post
+
+document
+  .getElementById('new-post-form')
+  .addEventListener('submit', addNewBlogPost);

@@ -27,9 +27,9 @@ router.get('/', async (req, res) => {
 
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    console.log(`\n---REQ SESSION`);
-    console.log(req.session);
-    console.log(req.session.user_id);
+    // console.log(`\n---HOME ROUTE: REQ SESSION`);
+    // console.log(req.session);
+    // console.log(req.session.user_id);
 
 
     const userData = await User.findByPk(req.session.user_id, {
@@ -41,8 +41,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
 
-    console.log(`\n---USER`);
-    console.log(user);
+    // console.log(`\n---HOME ROUTE: USER`);
+    // console.log(user);
 
     res.render('dashboard', {
       ...user,
@@ -50,8 +50,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
     });
 
   } catch (error) {
-    console.log(`\n----ERROR:`);
-    console.log(error);
+    // console.log(`\n----HOME ROUTE: ERROR:`);
+    // console.log(error);
     res.status(500).json(error);
   }
 });
