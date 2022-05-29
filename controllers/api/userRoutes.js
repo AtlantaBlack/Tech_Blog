@@ -4,9 +4,10 @@ const { User, Post, Comment } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const userData = await User.findAll({
-      include: {
-        model: Post
-      }
+      include: [
+        { model: Post },
+        { model: Comment }
+      ]
     });
 
     res.status(200).send(userData);
