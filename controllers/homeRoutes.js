@@ -25,6 +25,49 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+router.get('/post/:id', async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    const postData = await Post.findByPk(postId, {
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        },
+        { model: Comment }
+      ]
+    });
+
+    const selectedPost = postData.get({ plain: true });
+
+    // const commentData = await Comment.findAll({
+    //   where: {
+    //     post_id: postId
+    //   }
+    // });
+
+    // const postComments = commentData.map(comment => comment.get({ plain: true }));
+
+    console.log(`\n---HOME ROUTE: SELECTED POST`);
+    console.log(selectedPost);
+
+    // console.log(`\n---HOME ROUTE: ASSOCIATED COMMENTS`);
+    // console.log(postComments);
+
+    res.render('post', {
+      selectedPost
+    });
+
+  } catch (error) {
+    console.log(`\n---HOME ROUTE: POST ID ERROR`);
+    console.log(error);
+    res.status(500).json(error);
+  }
+});
+
+
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // console.log(`\n---HOME ROUTE: REQ SESSION`);
