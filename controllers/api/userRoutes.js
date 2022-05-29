@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    console.log(`\n---EMAIL/PASSWORD`);
+    console.log(`\n---USER_ROUTE LOGIN: EMAIL/PASSWORD`);
     console.log(email);
     console.log(password);
 
@@ -49,7 +49,8 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.user_id = returningUser.id;
+      req.session.logged_in = true;
 
       const { username } = returningUser;
       const welcomeMsg = `Welcome back, ${username}!`;
@@ -66,7 +67,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
     });
