@@ -5,11 +5,13 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 
+const routes = require('./controllers');
+
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // FOR TESTING API CALLS
-const { User, Post } = require('./models');
+// const { User, Post, Comment } = require('./models');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -35,39 +37,43 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', async (req, res) => {
-  res.render('dashboard');
-})
+// app.get('/', async (req, res) => {
+//   res.render('dashboard');
+// });
+
+app.use(routes);
 
 // TESTING RESPONSES RECEIVED
-app.get('/api/users', async (req, res) => {
-  try {
-    const userData = await User.findAll({
-      // attributes: {
-      //   exclude: ['password']
-      // },
-      include: { model: Post }
-    });
+// app.get('/api/users', async (req, res) => {
+//   try {
+//     const userData = await User.findAll({
+//       include: {
+//         model: Post,
+//         model: Comment
+//       }
+//     });
 
-    res.status(200).send(userData);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+//     res.status(200).send(userData);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
 
-app.get('/api/posts', async (req, res) => {
-  try {
-    const postData = await Post.findAll({
-      include: {
-        model: User
-      }
-    });
+// app.get('/api/posts', async (req, res) => {
+//   try {
+//     const postData = await Post.findAll({
+//       include: {
+//         model: User,
+//         model: Comment
+//       }
+//     });
 
-    res.status(200).send(postData);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+//     res.status(200).send(postData);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
+
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`App now listening on port ${PORT}`));
