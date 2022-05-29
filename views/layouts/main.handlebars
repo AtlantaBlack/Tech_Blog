@@ -21,12 +21,18 @@
         <li class="inline-block border-red">
           <a class="button custom-a" href="/dashboard">Dashboard</a>
         </li>
-        <li class="inline-block border-red">
-          <a class="button custom-a" href="/login">Login</a>
-        </li>
+
+        {{#if logged_in}}
+        {{!-- show logout button if logged in --}}
         <li class="inline-block border-red">
           <button id="logout" class="custom-a">Logout</a>
         </li>
+        {{else}}
+        {{!-- show login button otherwise --}}
+        <li class="inline-block border-red">
+          <a class="button custom-a" href="/login">Login</a>
+        </li>
+        {{/if}}
       </ul>
     </nav>
   </header>
@@ -38,6 +44,11 @@
   <footer>
     &copy; 2022 Sushan Yue
   </footer>
+
+  {{!-- logged in/logged out script --}}
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 </body>
 
 </html>
