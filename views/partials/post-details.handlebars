@@ -1,14 +1,18 @@
+{{!-- cards for each blog post --}}
 <div class="container card border-blue">
+  {{!-- link to the post id --}}
   <a href="/post/{{id}}">
     <div class="row card-header bottom-accent">
-
+      {{!-- post title --}}
       <div class="two-thirds column border-greenyellow">
         <h5 class="post-title">{{post_title}}</h5>
       </div>
+      {{!-- post author --}}
       <div class="one-third column border-orange">
         <h6 class="post-author">posted by {{user.username}} on {{date_created}}</h6>
       </div>
     </div>
+    {{!-- post content --}}
     <div class="row">
       <div class="twelve columns">
         <p>{{post_content}}</p>
