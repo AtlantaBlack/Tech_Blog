@@ -1,113 +1,117 @@
-const router = require('express').Router();
-const { User, Post, Comment } = require('../models');
-const withAuth = require('../utils/auth');
+const router = require("express").Router();
+const { User, Post, Comment } = require("../models");
+const withAuth = require("../utils/auth");
 
+// render the homepage
+router.get("/", async (req, res) => {
+	try {
+		const postData = await Post.findAll({
+			include: [
+				{
+					model: User,
+					attributes: ["username"]
+				}
+			]
+		});
 
-router.get('/', async (req, res) => {
-  try {
-    const postData = await Post.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
-    });
+		const posts = postData.map((post) => post.get({ plain: true }));
 
-    const posts = postData.map(post => post.get({ plain: true }));
-
-    res.render('homepage', {
-      posts,
-      logged_in: req.session.logged_in
-    });
-  } catch (error) {
-    res.status(500).json(error);
-  }
+		res.render("homepage", {
+			posts,
+			logged_in: req.session.logged_in
+		});
+	} catch (error) {
+		res.status(500).json(error);
+	}
 });
 
+router.get("/post/:id", async (req, res) => {
+	try {
+		const postId = req.params.id;
 
-router.get('/post/:id', async (req, res) => {
-  try {
-    const postId = req.params.id;
+		const postData = await Post.findByPk(postId, {
+			include: [
+				{
+					model: User,
+					attributes: ["username"]
+				}
+			]
+		});
 
-    const postData = await Post.findByPk(postId, {
-      include: [{
-        model: User,
-        attributes: ['username']
-      }]
-    });
+		const commentData = await Comment.findAll({
+			where: {
+				post_id: postId
+			},
+			include: {
+				model: User,
+				attributes: ["username"]
+			}
+		});
 
-    const commentData = await Comment.findAll({
-      where: {
-        post_id: postId
-      },
-      include: {
-        model: User,
-        attributes: ['username']
-      }
-    });
+		const selectedPost = postData.get({ plain: true });
 
-    const selectedPost = postData.get({ plain: true });
+		const postComments = commentData.map((comment) =>
+			comment.get({ plain: true })
+		);
 
-    const postComments = commentData.map(comment => comment.get({ plain: true }));
+		// console.log(`\n---HOME ROUTE: SELECTED POST`);
+		// console.log(selectedPost);
 
-    // console.log(`\n---HOME ROUTE: SELECTED POST`);
-    // console.log(selectedPost);
+		console.log(`\n---HOME ROUTE: COMMENTS`);
+		console.log(postComments);
 
-    console.log(`\n---HOME ROUTE: COMMENTS`);
-    console.log(postComments);
-
-
-    res.render('post', {
-      ...selectedPost,
-      postComments
-    });
-
-  } catch (error) {
-    console.log(`\n---HOME ROUTE: POST ID ERROR`);
-    console.log(error);
-    res.status(500).json(error);
-  }
+		res.render("post", {
+			...selectedPost,
+			postComments,
+			logged_in: req.session.logged_in
+		});
+	} catch (error) {
+		console.log(`\n---HOME ROUTE: POST ID ERROR`);
+		console.log(error);
+		res.status(500).json(error);
+	}
 });
 
+router.get("/dashboard", withAuth, async (req, res) => {
+	try {
+		// console.log(`\n---HOME ROUTE: REQ SESSION`);
+		// console.log(req.session);
+		// console.log(req.session.user_id);
 
-router.get('/dashboard', withAuth, async (req, res) => {
-  try {
-    // console.log(`\n---HOME ROUTE: REQ SESSION`);
-    // console.log(req.session);
-    // console.log(req.session.user_id);
+		const userData = await User.findByPk(req.session.user_id, {
+			include: [{ model: Post }, { model: Comment }]
+		});
 
+		const user = userData.get({ plain: true });
 
-    const userData = await User.findByPk(req.session.user_id, {
-      include: [
-        { model: Post },
-        { model: Comment }
-      ]
-    });
+		// console.log(`\n---HOME ROUTE: USER`);
+		// console.log(user);
 
-    const user = userData.get({ plain: true });
-
-    // console.log(`\n---HOME ROUTE: USER`);
-    // console.log(user);
-
-    res.render('dashboard', {
-      ...user,
-      logged_in: req.session.logged_in
-    });
-
-  } catch (error) {
-    // console.log(`\n----HOME ROUTE: ERROR:`);
-    // console.log(error);
-    res.status(500).json(error);
-  }
+		res.render("dashboard", {
+			...user,
+			logged_in: req.session.logged_in
+		});
+	} catch (error) {
+		// console.log(`\n----HOME ROUTE: ERROR:`);
+		// console.log(error);
+		res.status(500).json(error);
+	}
 });
 
-router.get('/login', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
-  }
-  res.render('login');
+router.get("/signup", (req, res) => {
+	if (req.session.logged_in) {
+		res.redirect("/dashboard");
+		return;
+	}
+	res.render("signup");
+});
+
+router.get("/login", (req, res) => {
+	if (req.session.logged_in) {
+		res.redirect("/dashboard");
+		return;
+	}
+	res.render("login");
 });
 
 module.exports = router;
