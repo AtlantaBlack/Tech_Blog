@@ -16,6 +16,14 @@
 	border: 2px solid var(--light);
 }
 
+a {
+	color: var(--black);
+}
+
+a:hover {
+	color: var(--deep);
+}
+
 header {
 	padding: 1rem;
 	background-color: var(--accent);
