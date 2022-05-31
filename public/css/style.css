@@ -1,36 +1,36 @@
 :root {
-  --deep: #2d3142;
-  --mid: #4f5d75;
-  --grey: #bfc0c0;
-  --light: #ffffff;
-  --accent: #ef8354;
+	--deep: #2d3142;
+	--mid: #4f5d75;
+	--grey: #bfc0c0;
+	--light: #ffffff;
+	--accent: #ef8354;
 }
 
 .custom-a {
-  color: var(--deep);
-  border: 2px solid var(--deep);
+	color: var(--deep);
+	border: 2px solid var(--deep);
 }
 
 .custom-a:hover {
-  color: var(--light);
-  border: 2px solid var(--light);
+	color: var(--light);
+	border: 2px solid var(--light);
 }
 
 header {
-  padding: 1rem;
-  background-color: var(--accent);
+	padding: 1rem;
+	background-color: var(--accent);
 }
 
 header h1 {
-  color: var(--light);
+	color: var(--light);
 }
 
 .inline-block {
-  display: inline-block
+	display: inline-block;
 }
 
 .card {
-  margin: 1.5rem auto;
+	margin: 1.5rem auto;
 }
 
 /* .cd-flex {
@@ -42,47 +42,53 @@ header h1 {
 } */
 
 .bottom-accent {
-  border-bottom: 2px solid var(--accent);
+	border-bottom: 2px solid var(--accent);
+}
+
+.bottom-padding {
+	margin-bottom: 3rem;
 }
 
 .card-header {
-  color: var(--grey);
+	color: var(--grey);
 }
 
 .post-title {
-  color: var(--mid);
+	color: var(--mid);
 }
 
 .post-author {
-  font-size: 90%;
-  text-align: right;
-  padding-top: 0.5rem;
-  margin-bottom: 0;
+	font-size: 90%;
+	text-align: right;
+	padding-top: 0.5rem;
+	margin-bottom: 0;
 }
 
 .comment-title {
-  background-color: var(--grey);
-  color: var(--deep);
+	background-color: var(--grey);
+	color: var(--deep);
 }
 
-
+.hide {
+	display: none;
+}
 
 .border-red {
-  border: 1px solid red;
+	border: 1px solid red;
 }
 
 .border-blue {
-  border: 1px solid blue;
+	border: 1px solid blue;
 }
 
 .border-greenyellow {
-  border: 1px solid greenyellow;
+	border: 1px solid greenyellow;
 }
 
 .border-cyan {
-  border: 1px solid cyan;
+	border: 1px solid cyan;
 }
 
 .border-orange {
-  border: 1px solid orange;
+	border: 1px solid orange;
 }
