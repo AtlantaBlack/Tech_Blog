@@ -8,6 +8,10 @@
 
 {{!-- existing blog posts go here --}}
 
+{{!-- <p>session:host</p>
+{{host}} --}}
+
 {{#each posts as |post|}}
+{{!-- pass the parent 'session_host' variable to the partial so the partial can access it --}}
 {{> post-details}}
 {{/each}}

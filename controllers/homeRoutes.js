@@ -14,10 +14,20 @@ router.get("/", async (req, res) => {
 			]
 		});
 
+		// console.log(`\n---HOME ROUTE: ALL POSTS DATA`);
+		// console.log(postData[0]);
+
 		const posts = postData.map((post) => post.get({ plain: true }));
+
+		// const host = req.session.user_id;
+
+		console.log(`\n---HOME ROUTE: ALL POSTS (mapped) DATA`);
+		console.log(posts[0]);
+		console.log(host);
 
 		res.render("homepage", {
 			posts,
+			// host,
 			logged_in: req.session.logged_in
 		});
 	} catch (error) {
@@ -78,6 +88,11 @@ router.get("/dashboard", withAuth, async (req, res) => {
 		// console.log(req.session);
 		// console.log(req.session.user_id);
 
+		const host = req.session.user_id;
+
+		console.log("\n---HOST");
+		console.log(host);
+
 		const userData = await User.findByPk(req.session.user_id, {
 			include: [{ model: Post }, { model: Comment }]
 		});
@@ -89,6 +104,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 
 		res.render("dashboard", {
 			...user,
+			host,
 			logged_in: req.session.logged_in
 		});
 	} catch (error) {

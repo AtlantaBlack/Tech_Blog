@@ -44,7 +44,7 @@
 </div>
 {{!-- show all the user's posts here --}}
 {{#each posts as |post|}}
-{{> dash-post-details}}
+{{> post-details session_host=../host}}
 {{/each}}
 {{/if}}
 

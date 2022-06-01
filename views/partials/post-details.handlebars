@@ -1,26 +1,45 @@
-{{!-- cards for each blog post --}}
+{{! cards for each blog post }}
 <div class="container card border-blue">
-  {{!-- link to the post id --}}
-  <a href="/post/{{id}}">
-    <div class="row card-header bottom-accent">
-      {{!-- post title --}}
-      <div class="two-thirds column border-greenyellow">
-        <h5 class="post-title">{{postTitle}}</h5>
-      </div>
-      {{!-- post author --}}
-      <div class="one-third column border-orange">
-        <h6 class="post-author">posted by {{user.username}} on {{format_date date_created}}</h6>
-      </div>
-    </div>
-    {{!-- post content --}}
-    <div class="row">
-      <div class="twelve columns">
-        <p>{{postContent}}</p>
-      </div>
-    </div>
-  </a>
-</div>
+	{{! link to the post id }}
+	<a href="/post/{{id}}">
+		<div class="row card-header bottom-accent">
+			{{! post title }}
+			<div class="two-thirds column border-greenyellow">
+				<h5 class="post-title">{{postTitle}}</h5>
+			</div>
+			{{! post author }}
+			<div class="one-third column border-orange">
+				<h6 class="post-author">posted by
+					{{user.username}}
+					on
+					{{format_date date_created}}</h6>
+			</div>
+		</div>
+		{{! post content }}
+		<div class="row">
+			<div class="twelve columns">
+				<p>{{postContent}}</p>
 
+				{{! partial variable passing tests }}
+				{{!-- session:host
+				<p>{{session_host}}</p>
+				<p>{{user_id}}</p> --}}
+
+
+		</div>
+	</a>			
+  
+  	{{#if_content_author session_host user_id}}
+					<div class="u-pull-right border-blue">
+						<a href="/update/{{id}}" class="button">Update Post</a>
+
+						<a href="/delete/{{id}}" class="button">Delete Post</a>
+					</div>
+				{{else}}
+					<p>blah blah</p>
+				{{/if_content_author}}
+			</div>
+</div>
 
 {{!-- <div class="container card border-blue">
   <a href="/post/{{post.id}}">

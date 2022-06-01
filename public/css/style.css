@@ -37,10 +37,6 @@ header h1 {
 	display: inline-block;
 }
 
-.card {
-	margin: 1.5rem auto;
-}
-
 /* .cd-flex {
   display: flex;
 }
@@ -49,12 +45,20 @@ header h1 {
   flex: 0 0 auto;
 } */
 
+.vertical {
+	resize: vertical;
+}
+
 .bottom-accent {
 	border-bottom: 2px solid var(--accent);
 }
 
 .bottom-padding {
 	margin-bottom: 3rem;
+}
+
+.card {
+	margin: 1.5rem auto;
 }
 
 .card-header {
