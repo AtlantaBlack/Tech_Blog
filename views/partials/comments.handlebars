@@ -6,15 +6,15 @@
 					{{comment.user.username}}
 					on
 					{{format_date comment.date_created}}</p>
-				<p>{{comment.commentContent}}</p>
+				<p>{{comment.comment_content}}</p>
 
-				{{!-- {{#if logged_in}} --}}
+				{{#if logged_in}}
 
-				<a href="/update/{{id}}" class="button">Update Post</a>
+					<a href="/update/{{id}}" class="button">Update Post</a>
 
-				<a href="/delete/{{id}}" class="button">Delete Post</a>
+					<a href="/delete/{{id}}" class="button">Delete Post</a>
 
-				{{!-- {{/if}} --}}
+				{{/if}}
 
 			</div>
 		</div>

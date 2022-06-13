@@ -15,15 +15,15 @@ router.get("/", async (req, res) => {
 		});
 
 		// console.log(`\n---HOME ROUTE: ALL POSTS DATA`);
-		// console.log(postData[0]);
+		// console.log(postData);
 
 		const posts = postData.map((post) => post.get({ plain: true }));
 
 		// const host = req.session.user_id;
 
 		console.log(`\n---HOME ROUTE: ALL POSTS (mapped) DATA`);
-		console.log(posts[0]);
-		console.log(host);
+		console.log(posts);
+		// console.log(host);
 
 		res.render("homepage", {
 			posts,
@@ -31,6 +31,8 @@ router.get("/", async (req, res) => {
 			logged_in: req.session.logged_in
 		});
 	} catch (error) {
+    console.log(`\n---HOME ROUTE: GET ROOT ERR`);
+    console.log(error);
 		res.status(500).json(error);
 	}
 });
@@ -108,8 +110,8 @@ router.get("/dashboard", withAuth, async (req, res) => {
 			logged_in: req.session.logged_in
 		});
 	} catch (error) {
-		// console.log(`\n----HOME ROUTE: ERROR:`);
-		// console.log(error);
+		console.log(`\n----HOME ROUTE: DASHBOARD ERR`);
+		console.log(error);
 		res.status(500).json(error);
 	}
 });

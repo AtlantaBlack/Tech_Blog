@@ -11,6 +11,8 @@ router.get("/", async (req, res) => {
 
 		res.status(200).json(postData);
 	} catch (error) {
+    console.log(`\n---POST ROUTE: GET ALL POSTS ERR`);
+    console.log(error);
 		res.status(500).json(error);
 	}
 });
@@ -18,8 +20,8 @@ router.get("/", async (req, res) => {
 // post a new blog post
 router.post("/", withAuth, async (req, res) => {
 	try {
-		// console.log(`\n---POST ROUTE: POST NEW BLOG`);
-		// console.log(req.body);
+		console.log(`\n---POST ROUTE: POST NEW BLOG`);
+		console.log(req.body);
 
 		// const postAuthor = await User.findOne({
 		//   where: {
@@ -49,6 +51,8 @@ router.post("/", withAuth, async (req, res) => {
 
 		res.status(200).json(newPost);
 	} catch (error) {
+    console.log(`\n---POST ROUTE: NEW POST ERR`);
+    console.log(error);
 		res.status(500).json(error);
 	}
 });
@@ -58,7 +62,7 @@ router.put("/:id", withAuth, async (req, res) => {
 	try {
 		console.log(req.body);
 	} catch (error) {
-		console.log(`\n----POST ROUTE: POST ID ERROR`);
+		console.log(`\n----POST ROUTE: UPDATE POST ERROR`);
 		console.log(error);
 		res.status(500).json(error);
 	}
