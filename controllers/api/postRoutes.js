@@ -46,7 +46,7 @@ router.post("/", withAuth, async (req, res) => {
 });
 
 //update a blog post
-router.put("/:id", async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
 	try {
 		// get post id
 		const postId = req.params.id;
@@ -54,7 +54,7 @@ router.put("/:id", async (req, res) => {
 		const { updatedPostTitle, updatedPostContent } = req.body;
 
 		// update the post
-		const updatedBlogPost = await Post.update(
+		const updatedPost = await Post.update(
 			{
 				post_title: updatedPostTitle,
 				post_content: updatedPostContent
@@ -67,11 +67,30 @@ router.put("/:id", async (req, res) => {
 		);
 
 		// console.log(`\n---POST ROUTE: UPDATE POST DATA`);
-		// console.log(updatedBlogPost);
+		// console.log(updatedPost);
 
-		res.status(200).json(updatedBlogPost);
+		res.status(200).json(updatedPost);
 	} catch (error) {
-		console.log(`\n---HOME ROUTE: UPDATE POST ID ERROR`);
+		console.log(`\n---POST ROUTE: UPDATE POST ID ERROR`);
+		console.log(error);
+		res.status(500).json(error);
+	}
+});
+
+// delete a blog post
+router.delete("/:id", withAuth, async (req, res) => {
+	try {
+		const postId = req.params.id;
+
+		const deletedPost = await Post.destroy({
+			where: {
+				id: postId
+			}
+		});
+
+		res.status(200).json(deletedPost);
+	} catch (error) {
+		console.log(`\n---POST ROUTE: DELETE POST ID ERROR`);
 		console.log(error);
 		res.status(500).json(error);
 	}
