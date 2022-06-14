@@ -18,10 +18,16 @@
 
       <form id="new-post-form" class="hide">
         <label for="post-title">Title:</label>
-        <input type="text" id="post-title" class="u-full-width" />
+        <input type="text"
+          id="post-title" 
+          class="u-full-width" 
+          placeholder="Post title here" />
 
         <label for="post-content">Content:</label>
-        <textarea id="post-content" class="u-full-width"></textarea>
+        <textarea 
+          id="post-content" 
+          class="u-full-width" 
+          placeholder="Post content here"></textarea>
 
         <button class="button-primary" type="submit">
           Post
@@ -44,9 +50,10 @@
 </div>
 {{!-- show all the user's posts here --}}
 {{#each posts as |post|}}
-{{!-- pass in session host details, 
-  dashboard user (username of person who posted the blog post), 
-  flag to see if user is in dashboard or not --}}
+{{!-- pass in extra info:
+  • session host details, 
+  • dashboard user (username of person who posted the blog post), 
+  • flag to see if user is in dashboard or not --}}
 {{> post-details session_host=../host dashboard_user=../username is_in_dashboard=../dashboardFlag}}
 {{/each}}
 {{/if}}

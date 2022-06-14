@@ -5,6 +5,7 @@ const withAuth = require("../../utils/auth");
 // get all blog posts
 router.get("/", async (req, res) => {
 	try {
+		// find all posts
 		const postData = await Post.findAll({
 			include: [{ model: User }, { model: Comment }]
 		});
@@ -20,29 +21,13 @@ router.get("/", async (req, res) => {
 // post a new blog post
 router.post("/", async (req, res) => {
 	try {
-		console.log(`\n---POST ROUTE: POST NEW BLOG`);
-		console.log(req.body);
+		// console.log(`\n---POST ROUTE: POST NEW BLOG`);
+		// console.log(req.body);
 
+		// get contents out of req.body
 		const { postTitle, postContent } = req.body;
 
-		// const postAuthor = await User.findOne({
-		//   where: {
-		//     id: req.session.user_id
-		//   }
-		// });
-
-		// console.log(`\n---POST ROUTE: POST AUTHOR`);
-		// console.log(postAuthor);
-		// console.log(postAuthor.username);
-
-		// const { username } = postAuthor;
-
-		// const { username } = await User.findOne({
-		//   where: {
-		//     id: req.session.user_id
-		//   }
-		// });
-
+		// create new post
 		const newPost = await Post.create({
 			post_title: postTitle,
 			post_content: postContent,
@@ -63,10 +48,12 @@ router.post("/", async (req, res) => {
 //update a blog post
 router.put("/:id", async (req, res) => {
 	try {
+		// get post id
 		const postId = req.params.id;
-
+		// get contents out of req.body
 		const { updatedPostTitle, updatedPostContent } = req.body;
 
+		// update the post
 		const updatedBlogPost = await Post.update(
 			{
 				post_title: updatedPostTitle,
@@ -89,15 +76,5 @@ router.put("/:id", async (req, res) => {
 		res.status(500).json(error);
 	}
 });
-
-// router.put("/:id", withAuth, async (req, res) => {
-// 	try {
-// 		console.log(req.body);
-// 	} catch (error) {
-// 		console.log(`\n----POST ROUTE: UPDATE POST ERROR`);
-// 		console.log(error);
-// 		res.status(500).json(error);
-// 	}
-// });
 
 module.exports = router;
