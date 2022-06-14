@@ -18,10 +18,12 @@ router.get("/", async (req, res) => {
 });
 
 // post a new blog post
-router.post("/", withAuth, async (req, res) => {
+router.post("/", async (req, res) => {
 	try {
 		console.log(`\n---POST ROUTE: POST NEW BLOG`);
 		console.log(req.body);
+
+    const { postTitle, postContent } = req.body;
 
 		// const postAuthor = await User.findOne({
 		//   where: {
@@ -42,7 +44,8 @@ router.post("/", withAuth, async (req, res) => {
 		// });
 
 		const newPost = await Post.create({
-			...req.body,
+			post_title: postTitle,
+      post_content: postContent,
 			user_id: req.session.user_id
 		});
 

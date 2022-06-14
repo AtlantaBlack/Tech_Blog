@@ -21,8 +21,8 @@ router.get("/", async (req, res) => {
 
 		// const host = req.session.user_id;
 
-		console.log(`\n---HOME ROUTE: ALL POSTS (mapped) DATA`);
-		console.log(posts);
+		// console.log(`\n---HOME ROUTE: ALL POSTS (mapped) DATA`);
+		// console.log(posts);
 		// console.log(host);
 
 		res.render("homepage", {
@@ -69,8 +69,8 @@ router.get("/post/:id", async (req, res) => {
 		// console.log(`\n---HOME ROUTE: SELECTED POST`);
 		// console.log(selectedPost);
 
-		console.log(`\n---HOME ROUTE: COMMENTS`);
-		console.log(postComments);
+		// console.log(`\n---HOME ROUTE: COMMENTS`);
+		// console.log(postComments);
 
 		res.render("post", {
 			...selectedPost,
@@ -90,6 +90,8 @@ router.get("/dashboard", withAuth, async (req, res) => {
 		// console.log(req.session);
 		// console.log(req.session.user_id);
 
+    const dashboardFlag = true;
+
 		const host = req.session.user_id;
 
 		console.log("\n---HOST");
@@ -101,11 +103,12 @@ router.get("/dashboard", withAuth, async (req, res) => {
 
 		const user = userData.get({ plain: true });
 
-		// console.log(`\n---HOME ROUTE: USER`);
-		// console.log(user);
+		console.log(`\n---HOME ROUTE: USER`);
+		console.log(user);
 
 		res.render("dashboard", {
 			...user,
+      dashboardFlag: dashboardFlag,
 			host,
 			logged_in: req.session.logged_in
 		});

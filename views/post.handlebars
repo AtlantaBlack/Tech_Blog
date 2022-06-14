@@ -25,18 +25,24 @@
 {{> comments}}
 {{/if}}
 
+
 {{!-- add a comment --}}
 <div class="container border-blue">
   <div class="row border-red">
     <div class="twelve columns">
       <form id="leave-comment-form">
         <label for="comment-content">Leave a comment:</label>
+        {{!-- {{#if logged_in}} --}}
         <textarea id="comment-content" class="u-full-width"></textarea>
 
         <button class="button-primary" type="submit">Post</button>
+        {{!-- {{else}}
+        <div>Please log in to comment on this post.</div>
+        {{/if}} --}}
       </form>
     </div>
   </div>
 </div>
+
 
 <script src="/js/comments.js"></script>

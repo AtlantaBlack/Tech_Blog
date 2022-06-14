@@ -44,7 +44,10 @@
 </div>
 {{!-- show all the user's posts here --}}
 {{#each posts as |post|}}
-{{> post-details session_host=../host}}
+{{!-- pass in session host details, 
+  dashboard user (username of person who posted the blog post), 
+  flag to see if user is in dashboard or not --}}
+{{> post-details session_host=../host dashboard_user=../username is_in_dashboard=../dashboardFlag}}
 {{/each}}
 {{/if}}
 
