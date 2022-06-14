@@ -115,8 +115,8 @@ router.get("/update/:id", withAuth, async (req, res) => {
 
 		const selectedPost = postData.get({ plain: true });
 
-		console.log(`\n---HOME ROUTE: UPDATE SELECTED POST`);
-		console.log(selectedPost);
+		// console.log(`\n---HOME ROUTE: UPDATE SELECTED POST`);
+		// console.log(selectedPost);
 
 		res.render("updatePost", {
 			...selectedPost,

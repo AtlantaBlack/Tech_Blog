@@ -9,8 +9,12 @@ const updateBlogPost = async (event) => {
 
 	const postId = window.location.toString().split("/").pop();
 
+	console.log(updatedPostTitle);
+	console.log(updatedPostContent);
+	console.log(postId);
+
 	if (updatedPostTitle || updatedPostContent) {
-		const response = await fetch(`/api/update/${postId}`, {
+		const response = await fetch(`/api/posts/${postId}`, {
 			method: "PUT",
 			body: JSON.stringify({ updatedPostTitle, updatedPostContent, postId }),
 			headers: {
@@ -19,6 +23,7 @@ const updateBlogPost = async (event) => {
 		});
 
 		if (response.ok) {
+			document.location.replace(`/post/${postId}`);
 			console.log("woohoo");
 		} else {
 			alert("Update failed.");

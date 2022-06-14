@@ -61,8 +61,28 @@ router.post("/", async (req, res) => {
 });
 
 //update a blog post
-router.put("/:id", withAuth, async (req, res) => {
+router.put("/:id", async (req, res) => {
 	try {
+		const postId = req.params.id;
+
+		const { updatedPostTitle, updatedPostContent } = req.body;
+
+		const updatedBlogPost = await Post.update(
+			{
+				post_title: updatedPostTitle,
+				post_content: updatedPostContent
+			},
+			{
+				where: {
+					id: postId
+				}
+			}
+		);
+
+		// console.log(`\n---POST ROUTE: UPDATE POST DATA`);
+		// console.log(updatedBlogPost);
+
+		res.status(200).json(updatedBlogPost);
 	} catch (error) {
 		console.log(`\n---HOME ROUTE: UPDATE POST ID ERROR`);
 		console.log(error);
