@@ -37,6 +37,10 @@ header h1 {
 	display: inline-block;
 }
 
+.vh-30 {
+	min-height: 30vh;
+}
+
 /* .cd-flex {
   display: flex;
 }

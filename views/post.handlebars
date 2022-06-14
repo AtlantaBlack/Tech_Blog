@@ -19,6 +19,7 @@
   </div>
   </a>
 
+{{!-- if a user is logged in and they created the blog post, show the update/delete buttons --}}
   {{#if_content_author host user_id}}
   <div class="u-pull-right border-blue">
     <a href="/update/{{id}}" class="button">Update Post</a>
@@ -39,17 +40,19 @@
 {{!-- add a comment --}}
 <div class="container border-blue">
   <div class="row border-red">
-    <div class="twelve columns">
+    <div class="twelve columns">        
+      
+      {{#if logged_in}}
       <form id="leave-comment-form">
         <label for="comment-content">Leave a comment:</label>
-        {{!-- {{#if logged_in}} --}}
         <textarea id="comment-content" class="u-full-width"></textarea>
-
         <button class="button-primary" type="submit">Post</button>
-        {{!-- {{else}}
-        <div>Please log in to comment on this post.</div>
-        {{/if}} --}}
-      </form>
+      </form>        
+      {{else}}
+      <h5>Want to leave a comment?</h5> 
+      <p>Please log in by clicking the button below.</p>
+      <a href="/login" class="button button-primary">Login</a>
+      {{/if}}
     </div>
   </div>
 </div>

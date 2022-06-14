@@ -1,0 +1,33 @@
+<div class="container">
+	<div class="row">
+		<div class="twelve columns">
+
+			<h5>Update your blog post:</h5>
+
+			<p>Edit your blog post title or content here.</p>
+
+			<form id="update-post-form">
+				<label for="post-title">Update the title:</label>
+				<input
+					type="text"
+					id="post-title"
+					class="u-full-width"
+					value="{{post_title}}"
+				/>
+
+				<label for="post-content">Update the content:</label>
+				<textarea
+					id="post-content"
+					class="u-full-width vh-30"
+				>{{post_content}}</textarea>
+
+				<button class="button-primary" type="submit">
+					Update
+				</button>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<script src="/js/updatePost.js"></script>

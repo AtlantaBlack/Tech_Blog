@@ -37,8 +37,6 @@ router.get("/", async (req, res) => {
 
 router.get("/post/:id", async (req, res) => {
 	try {
-		const host = req.session.user_id;
-
 		const postId = req.params.id;
 
 		const postData = await Post.findByPk(postId, {
@@ -66,27 +64,66 @@ router.get("/post/:id", async (req, res) => {
 			comment.get({ plain: true })
 		);
 
+		const host = req.session.user_id;
+
 		const userData = await User.findByPk(req.session.user_id, {
 			include: [{ model: Post }, { model: Comment }]
 		});
 
-		const user = userData.get({ plain: true });
+		if (userData) {
+			const user = userData.get({ plain: true });
 
-		// console.log(`\n---HOME ROUTE: SELECTED POST`);
-		// console.log(selectedPost);
+			// console.log(`\n---HOME ROUTE: SELECTED POST`);
+			// console.log(selectedPost);
 
-		// console.log(`\n---HOME ROUTE: COMMENTS`);
-		// console.log(postComments);
+			// console.log(`\n---HOME ROUTE: COMMENTS`);
+			// console.log(postComments);
 
-		res.render("post", {
-			...user,
+			res.render("post", {
+				...user,
+				...selectedPost,
+				postComments,
+				host,
+				logged_in: req.session.logged_in
+			});
+		} else {
+			res.render("post", {
+				...selectedPost,
+				postComments,
+				logged_in: req.session.logged_in
+			});
+		}
+	} catch (error) {
+		console.log(`\n---HOME ROUTE: POST ID ERROR`);
+		console.log(error);
+		res.status(500).json(error);
+	}
+});
+
+router.get("/update/:id", withAuth, async (req, res) => {
+	try {
+		const postId = req.params.id;
+
+		const postData = await Post.findByPk(postId, {
+			include: [
+				{
+					model: User,
+					attributes: ["username"]
+				}
+			]
+		});
+
+		const selectedPost = postData.get({ plain: true });
+
+		console.log(`\n---HOME ROUTE: UPDATE SELECTED POST`);
+		console.log(selectedPost);
+
+		res.render("updatePost", {
 			...selectedPost,
-			postComments,
-			host,
 			logged_in: req.session.logged_in
 		});
 	} catch (error) {
-		console.log(`\n---HOME ROUTE: POST ID ERROR`);
+		console.log(`\n---HOME ROUTE: UPDATE POST ID ERROR`);
 		console.log(error);
 		res.status(500).json(error);
 	}

@@ -1,7 +1,7 @@
 const addNewComment = async (event) => {
 	event.preventDefault();
 
-	console.log("COMMENT POST CLICK");
+	// console.log("COMMENT POST CLICK");
 
 	const commentContent = document
 		.getElementById("comment-content")
@@ -10,7 +10,7 @@ const addNewComment = async (event) => {
 	// use the url to get the post id
 	const postId = window.location.toString().split("/").pop().split("?")[0];
 
-	console.log(postId);
+	// console.log(postId);
 
 	if (commentContent) {
 		const response = await fetch("/api/comments", {
