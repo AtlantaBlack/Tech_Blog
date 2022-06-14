@@ -1,12 +1,12 @@
+// toggle button
 const toggleFormButton = document.getElementById("toggle-form-vis");
+// new post form
+const newPostForm = document.getElementById("new-post-form");
 
 // show the form on click
 const showBlogPostForm = () => {
 	let form = document.getElementById("new-post-form");
-
-	console.log("CLICK");
-	console.log(form);
-
+	// add or remove class 'hide' as needed
 	form.classList.toggle("hide");
 };
 
@@ -14,8 +14,7 @@ const showBlogPostForm = () => {
 const addNewBlogPost = async (event) => {
 	event.preventDefault();
 
-	console.log("DASHBOARD NEW POST CLICK");
-
+	// get content out of form
 	const postTitle = document.getElementById("post-title").value.trim();
 	const postContent = document.getElementById("post-content").value.trim();
 
@@ -36,12 +35,6 @@ const addNewBlogPost = async (event) => {
 	}
 };
 
-// update old post
-
-// delete old post
-
 toggleFormButton.addEventListener("click", showBlogPostForm);
 
-document
-	.getElementById("new-post-form")
-	.addEventListener("submit", addNewBlogPost);
+newPostForm.addEventListener("submit", addNewBlogPost);

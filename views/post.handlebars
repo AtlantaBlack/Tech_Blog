@@ -14,7 +14,7 @@
   {{!-- post content --}}
   <div class="row">
     <div class="twelve columns">
-      <p>{{post_content}}</p>
+      <p class="preserve-whitespace">{{post_content}}</p>
     </div>
   </div>
   </a>
@@ -22,9 +22,7 @@
 {{!-- if a user is logged in and they created the blog post, show the update/delete buttons --}}
   {{#if_content_author host user_id}}
   <div class="u-pull-right border-blue">
-    <a href="/update/{{id}}" class="button">Update Post</a>
-
-    <a href="/delete/{{id}}" class="button">Delete Post</a>
+    <a href="/update/{{id}}" class="button">Edit Post</a>
   </div>
 	{{else}}
 		{{! empty space }}
@@ -56,6 +54,5 @@
     </div>
   </div>
 </div>
-
 
 <script src="/js/comments.js"></script>

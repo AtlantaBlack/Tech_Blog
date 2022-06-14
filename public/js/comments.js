@@ -1,8 +1,13 @@
+// leave comment form
+const leaveCommentForm = document.getElementById("leave-comment-form");
+
+// add new comment form handler
 const addNewComment = async (event) => {
 	event.preventDefault();
 
 	// console.log("COMMENT POST CLICK");
 
+	// get content
 	const commentContent = document
 		.getElementById("comment-content")
 		.value.trim();
@@ -29,6 +34,4 @@ const addNewComment = async (event) => {
 	}
 };
 
-document
-	.getElementById("leave-comment-form")
-	.addEventListener("submit", addNewComment);
+leaveCommentForm.addEventListener("submit", addNewComment);

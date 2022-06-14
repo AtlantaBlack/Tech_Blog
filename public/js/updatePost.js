@@ -1,3 +1,8 @@
+// update post form
+const updatePostForm = document.getElementById("update-post-form");
+// delete post button
+const deletePostButton = document.getElementById("delete-post-button");
+
 // update blog handler
 const updateBlogPost = async (event) => {
 	event.preventDefault();
@@ -30,17 +35,20 @@ const updateBlogPost = async (event) => {
 	}
 };
 
-const deleteBlogPost = async (event) => {
+// delete post handler
+const deleteBlogPost = async () => {
 	// get post id
 	const postId = window.location.toString().split("/").pop();
 
+	// ask user for confirmation before deleting
 	if (window.confirm("Are you sure you want to delete this blog post?")) {
+		// if yes, start the deletion process
 		const response = await fetch(`/api/posts/${postId}`, {
 			method: "DELETE"
 		});
 
 		if (response.ok) {
-			alert("Post deleted");
+			alert("Post successfully deleted.");
 			document.location.replace("/dashboard");
 		} else {
 			alert("Post failed to be deleted.");
@@ -48,11 +56,7 @@ const deleteBlogPost = async (event) => {
 	}
 };
 
-// add event listener to the form button
-document
-	.getElementById("update-post-form")
-	.addEventListener("submit", updateBlogPost);
+// add event listeners
+updatePostForm.addEventListener("submit", updateBlogPost);
 
-document
-	.getElementById("delete-post-button")
-	.addEventListener("click", deleteBlogPost);
+deletePostButton.addEventListener("click", deleteBlogPost);

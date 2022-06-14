@@ -8,31 +8,26 @@
 				<h5 class="post-title">{{post_title}}</h5>
 			</div>
 
-			{{#if is_in_dashboard}}
-				{{! post author }}
-				<div class="one-third column border-orange">
+			{{! post author }}
+			<div class="one-third column border-orange">
+				{{#if is_in_dashboard}}
 					<h6 class="post-author">posted by
 						{{dashboard_user}}
 						on
 						{{format_date date_created}}</h6>
-				</div>
-
-			{{else}}
-
-				{{! post author }}
-				<div class="one-third column border-orange">
+				{{else}}
 					<h6 class="post-author">posted by
 						{{user.username}}
 						on
 						{{format_date date_created}}</h6>
-				</div>
-			{{/if}}
+				{{/if}}
+			</div>
 		</div>
 
 		{{! post content }}
 		<div class="row">
 			<div class="twelve columns">
-				<p>{{post_content}}</p>
+				<p class="preserve-whitespace">{{post_content}}</p>
 
 				{{! partial variable passing tests }}
 				{{!-- session:host
@@ -42,32 +37,12 @@
 		</div>
 	</a>
 
+	{{! show update/delete buttons to content author only }}
 	{{#if_content_author session_host user_id}}
 		<div class="u-pull-right border-blue">
-			<a href="/update/{{id}}" class="button">Update Post</a>
-
-			<a href="/update/{{id}}" class="button">Delete Post</a>
+			<a href="/update/{{id}}" class="button">Edit Post</a>
 		</div>
 	{{else}}
 		{{! empty space }}
 	{{/if_content_author}}
 </div>
-
-{{!-- <div class="container card border-blue">
-  <a href="/post/{{post.id}}">
-    <div class="row card-header bottom-accent">
-
-      <div class="two-thirds column border-greenyellow">
-        <h5 class="post-title">{{post.post_title}}</h5>
-      </div>
-      <div class="one-third column border-orange">
-        <h6 class="post-author">posted by {{post.user.username}} on {{post.date_created}}</h6>
-      </div>
-    </div>
-    <div class="row">
-      <div class="twelve columns">
-        <p>{{post.post_content}}</p>
-      </div>
-    </div>
-  </a>
-</div> --}}

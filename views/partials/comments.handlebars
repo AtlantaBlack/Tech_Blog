@@ -6,16 +6,13 @@
 					{{comment.user.username}}
 					on
 					{{format_date comment.date_created}}</p>
-				<p>{{comment.comment_content}}</p>
+				<p class="preserve-whitespace">{{comment.comment_content}}</p>
 
 				{{#if logged_in}}
-
+					{{! if user is logged in, show update/delete buttons }}
 					<a href="/update/{{id}}" class="button">Update Post</a>
-
-					<a href="/delete/{{id}}" class="button">Delete Post</a>
-
+					<a href="/dashboard" class="button" data-id="{{id}}">Delete Post</a>
 				{{/if}}
-
 			</div>
 		</div>
 	</div>
