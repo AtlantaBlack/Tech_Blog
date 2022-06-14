@@ -28,7 +28,7 @@ const updateBlogPost = async (event) => {
 
 		// if all good, refresh page
 		if (response.ok) {
-			document.location.replace(`/post/${postId}`);
+			document.location.replace(`/posts/${postId}`);
 		} else {
 			alert("Update failed.");
 		}

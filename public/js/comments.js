@@ -27,7 +27,7 @@ const addNewComment = async (event) => {
 		});
 
 		if (response.ok) {
-			document.location.replace(`/post/${postId}`);
+			document.location.replace(`/posts/${postId}`);
 		} else {
 			alert("Comment failed.");
 		}

@@ -22,7 +22,7 @@
 {{!-- if a user is logged in and they created the blog post, show the update/delete buttons --}}
   {{#if_content_author host user_id}}
   <div class="u-pull-right border-blue">
-    <a href="/update/{{id}}" class="button">Edit Post</a>
+    <a href="/posts/update/{{id}}" class="button">Edit Post</a>
   </div>
 	{{else}}
 		{{! empty space }}

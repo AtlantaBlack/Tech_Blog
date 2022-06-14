@@ -109,7 +109,7 @@ router.get("/post/:id", async (req, res) => {
 });
 
 // render the 'update blog post' page
-router.get("/update/:id", withAuth, async (req, res) => {
+router.get("/posts/update/:id", withAuth, async (req, res) => {
 	try {
 		// get specific post id
 		const postId = req.params.id;
