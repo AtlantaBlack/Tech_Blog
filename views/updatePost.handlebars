@@ -6,12 +6,14 @@
 
 			<p>Edit your blog post title or content here.</p>
 
+			{{! pass in old post title and content for convenience }}
 			<form id="update-post-form">
 				<label for="post-title">Update the title:</label>
 				<input
 					type="text"
 					id="post-title"
 					class="u-full-width"
+					placeholder="Post title here"
 					value="{{post_title}}"
 				/>
 
@@ -19,6 +21,7 @@
 				<textarea
 					id="post-content"
 					class="u-full-width vh-30"
+					placeholder="Post content here"
 				>{{post_content}}</textarea>
 
 				<button class="button-primary" type="submit">
