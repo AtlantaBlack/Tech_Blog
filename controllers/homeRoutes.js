@@ -12,7 +12,8 @@ router.get("/", async (req, res) => {
 					model: User,
 					attributes: ["username"]
 				}
-			]
+			],
+			order: [["id", "DESC"]] // order descending by post ID
 		});
 
 		// console.log(`\n---HOME ROUTE: ALL POSTS DATA`);
@@ -155,7 +156,9 @@ router.get("/dashboard", withAuth, async (req, res) => {
 
 		// get user data
 		const userData = await User.findByPk(req.session.user_id, {
-			include: [{ model: Post }, { model: Comment }]
+			include: [{ model: Post }, { model: Comment }],
+			// order descending by post ID
+			order: [[{ model: Post }, "id", "DESC"]]
 		});
 		// map user data
 		const user = userData.get({ plain: true });

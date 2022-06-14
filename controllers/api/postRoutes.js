@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 });
 
 // post a new blog post
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
 	try {
 		// console.log(`\n---POST ROUTE: POST NEW BLOG`);
 		// console.log(req.body);
