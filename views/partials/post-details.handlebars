@@ -8,28 +8,26 @@
 				<h5 class="post-title">{{post_title}}</h5>
 			</div>
 
-      {{#if is_in_dashboard}}
-			{{! post author }}
-			<div class="one-third column border-orange">
-				<h6 class="post-author">posted by
-					{{dashboard_user}}
-					on
-					{{format_date date_created}}</h6>
-			</div>
+			{{#if is_in_dashboard}}
+				{{! post author }}
+				<div class="one-third column border-orange">
+					<h6 class="post-author">posted by
+						{{dashboard_user}}
+						on
+						{{format_date date_created}}</h6>
+				</div>
+
+			{{else}}
+
+				{{! post author }}
+				<div class="one-third column border-orange">
+					<h6 class="post-author">posted by
+						{{user.username}}
+						on
+						{{format_date date_created}}</h6>
+				</div>
+			{{/if}}
 		</div>
-
-    {{else}}
-
-{{! post author }}
-			<div class="one-third column border-orange">
-				<h6 class="post-author">posted by
-					{{user.username}}
-					on
-					{{format_date date_created}}</h6>
-			</div>
-		</div>
-    {{/if}}
-
 
 		{{! post content }}
 		<div class="row">
@@ -40,21 +38,19 @@
 				{{!-- session:host
 				<p>{{session_host}}</p>
 				<p>{{user_id}}</p> --}}
-
-
-		</div>
-	</a>			
-  
-  	{{#if_content_author session_host user_id}}
-					<div class="u-pull-right border-blue">
-						<a href="/update/{{id}}" class="button">Update Post</a>
-
-						<a href="/delete/{{id}}" class="button">Delete Post</a>
-					</div>
-				{{else}}
-					<p>blah blah</p>
-				{{/if_content_author}}
 			</div>
+		</div>
+	</a>
+
+	{{#if_content_author session_host user_id}}
+		<div class="u-pull-right border-blue">
+			<a href="/update/{{id}}" class="button">Update Post</a>
+
+			<a href="/delete/{{id}}" class="button">Delete Post</a>
+		</div>
+	{{else}}
+		{{! empty space }}
+	{{/if_content_author}}
 </div>
 
 {{!-- <div class="container card border-blue">

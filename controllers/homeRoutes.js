@@ -23,22 +23,22 @@ router.get("/", async (req, res) => {
 
 		// console.log(`\n---HOME ROUTE: ALL POSTS (mapped) DATA`);
 		// console.log(posts);
-		// console.log(host);
 
 		res.render("homepage", {
 			posts,
-			// host,
 			logged_in: req.session.logged_in
 		});
 	} catch (error) {
-    console.log(`\n---HOME ROUTE: GET ROOT ERR`);
-    console.log(error);
+		console.log(`\n---HOME ROUTE: GET ROOT ERR`);
+		console.log(error);
 		res.status(500).json(error);
 	}
 });
 
 router.get("/post/:id", async (req, res) => {
 	try {
+		const host = req.session.user_id;
+
 		const postId = req.params.id;
 
 		const postData = await Post.findByPk(postId, {
@@ -66,6 +66,12 @@ router.get("/post/:id", async (req, res) => {
 			comment.get({ plain: true })
 		);
 
+		const userData = await User.findByPk(req.session.user_id, {
+			include: [{ model: Post }, { model: Comment }]
+		});
+
+		const user = userData.get({ plain: true });
+
 		// console.log(`\n---HOME ROUTE: SELECTED POST`);
 		// console.log(selectedPost);
 
@@ -73,8 +79,10 @@ router.get("/post/:id", async (req, res) => {
 		// console.log(postComments);
 
 		res.render("post", {
+			...user,
 			...selectedPost,
 			postComments,
+			host,
 			logged_in: req.session.logged_in
 		});
 	} catch (error) {
@@ -90,7 +98,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 		// console.log(req.session);
 		// console.log(req.session.user_id);
 
-    const dashboardFlag = true;
+		const dashboardFlag = true;
 
 		const host = req.session.user_id;
 
@@ -108,7 +116,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 
 		res.render("dashboard", {
 			...user,
-      dashboardFlag: dashboardFlag,
+			dashboardFlag: dashboardFlag,
 			host,
 			logged_in: req.session.logged_in
 		});

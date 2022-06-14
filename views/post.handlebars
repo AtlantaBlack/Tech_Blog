@@ -18,6 +18,16 @@
     </div>
   </div>
   </a>
+
+  {{#if_content_author host user_id}}
+  <div class="u-pull-right border-blue">
+    <a href="/update/{{id}}" class="button">Update Post</a>
+
+    <a href="/delete/{{id}}" class="button">Delete Post</a>
+  </div>
+	{{else}}
+		{{! empty space }}
+	{{/if_content_author}}
 </div>
 
 {{!-- if there are comments --}}
