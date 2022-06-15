@@ -7,11 +7,7 @@
 				{{format_date date_created}}</p>
 			<p class="preserve-whitespace">{{comment_content}}</p>
 
-			{{! partial variable passing tests }}
-			{{!-- session:host
-			<p>{{session_host}}</p>
-			<p>{{user_id}}</p> --}}
-
+			{{! determine if user is the one who posted the comment, if yes then show edit button }}
 			{{#if_content_author session_host user_id}}
 				<div class="u-pull-right border-blue">
 					<a href="/comments/update/{{id}}" class="button">Edit Comment</a>

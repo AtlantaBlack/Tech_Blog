@@ -8,15 +8,15 @@
 
 {{!-- existing blog posts go here --}}
 {{#if posts.length}}
-{{#each posts as |post|}}
-{{> post-details}}
-{{/each}}
+  {{#each posts as |post|}}
+  {{> post-details}}
+  {{/each}}
 {{else}}
-<div class="container card">
-  <div class="row">
-    <div class="twelve columns">
-      <p>No blog posts at this time.</p>
+  <div class="container card">
+    <div class="row">
+      <div class="twelve columns">
+        <p>No blog posts at this time.</p>
+      </div>
     </div>
   </div>
-</div>
 {{/if}}

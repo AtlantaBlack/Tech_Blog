@@ -30,8 +30,8 @@ const updateComment = async (event) => {
 
 		// if all good, refresh page
 		if (response.ok) {
+			// document.referrer brings user back to /posts/post-id
 			document.location.replace(document.referrer);
-			// document.location.replace(`/comments/${commentId}`);
 		} else {
 			alert("Update comment failed.");
 		}
@@ -52,6 +52,7 @@ const deleteComment = async () => {
 
 		if (response.ok) {
 			alert("Comment successfully deleted.");
+			// document.referrer brings user back to /posts/post-id
 			document.location.replace(document.referrer);
 		} else {
 			alert("Comment failed to be deleted.");
