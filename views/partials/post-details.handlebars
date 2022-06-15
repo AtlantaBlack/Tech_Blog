@@ -1,15 +1,15 @@
 {{! cards for each blog post }}
-<div class="container card border-blue">
+<div class="container card">
 	{{! link to the post id }}
 	<a href="/posts/{{id}}">
 		<div class="row card-header bottom-accent">
 			{{! post title }}
-			<div class="two-thirds column border-greenyellow">
+			<div class="two-thirds column">
 				<h5 class="post-title">{{post_title}}</h5>
 			</div>
 
 			{{! post author }}
-			<div class="one-third column border-orange">
+			<div class="one-third column">
 				{{#if is_in_dashboard}}
 					<h6 class="post-author">posted by
 						{{dashboard_user}}
@@ -34,7 +34,7 @@
 
 	{{! show update/delete buttons to content author only }}
 	{{#if_content_author session_host user_id}}
-		<div class="u-pull-right border-blue">
+		<div class="u-pull-right">
 			<a href="/posts/update/{{id}}" class="button">Edit Post</a>
 		</div>
 	{{else}}

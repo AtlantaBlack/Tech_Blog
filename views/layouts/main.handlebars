@@ -13,23 +13,23 @@
 <body>
   <header>
     <h1>The Tech Blog</h1>
-    <nav class="border-orange">
+    <nav>
       <ul>
-        <li class="inline-block border-red">
+        <li class="inline-block">
           <a class="button custom-a" href="/">Home</a>
         </li>
-        <li class="inline-block border-red">
+        <li class="inline-block">
           <a class="button custom-a" href="/dashboard">Dashboard</a>
         </li>
 
         {{#if logged_in}}
         {{!-- show logout button if logged in --}}
-        <li class="inline-block border-red">
+        <li class="inline-block">
           <button id="logout" class="custom-a">Logout</a>
         </li>
         {{else}}
         {{!-- show login button otherwise --}}
-        <li class="inline-block border-red">
+        <li class="inline-block">
           <a class="button custom-a" href="/login">Login</a>
         </li>
         {{/if}}

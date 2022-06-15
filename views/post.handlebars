@@ -1,13 +1,13 @@
 {{!-- card for specific blog post --}}
-<div class="container card border-blue">
+<div class="container card">
   {{!-- link to the post id --}}
   <div class="row card-header bottom-accent">
     {{!-- post title --}}
-    <div class="two-thirds column border-greenyellow">
+    <div class="two-thirds column">
       <h5 class="post-title">{{post_title}}</h5>
     </div>
     {{!-- post author --}}
-    <div class="one-third column border-orange">
+    <div class="one-third column">
       <h6 class="post-author">posted by {{user.username}}
         <br/>
         <span class="italicised">{{format_date date_created}}</span></h6>
@@ -23,7 +23,7 @@
 
 {{!-- if a user is logged in and they created the blog post, show the update/delete buttons --}}
   {{#if_content_author host user_id}}
-  <div class="u-pull-right border-blue">
+  <div class="u-pull-right">
     <a href="/posts/update/{{id}}" class="button">Edit Post</a>
   </div>
 	{{else}}
@@ -41,8 +41,8 @@
 {{/if}}
 
 {{!-- add a comment --}}
-<div class="container border-blue">
-  <div class="row border-red">
+<div class="container">
+  <div class="row">
     <div class="twelve columns">        
       
       {{#if logged_in}}

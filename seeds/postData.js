@@ -3,27 +3,47 @@ const { Post } = require("../models");
 
 const postData = [
 	{
-		post_title: "herky berk",
-		post_content:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum tincidunt lectus ac gravida. Maecenas eleifend nunc tortor, non varius diam fringilla vitae. Aenean vel porttitor velit. Nam vestibulum, purus id vestibulum hendrerit, quam leo vulputate elit, nec euismod lacus nibh id enim. Vestibulum vehicula blandit massa vel condimentum. Pellentesque egestas diam sit amet nulla pellentesque sagittis. Morbi pellentesque quam ac volutpat porta. Duis imperdiet erat porttitor ultricies maximus. Proin sit amet orci nec dolor facilisis maximus et eget ex.",
+		post_title: "Have you ever used 'Document.referrer'?",
+		post_content: `MDN says this: 
+    
+    "The Document.referrer property returns the URI of the page that linked to this page.
+
+    The value is an empty string if the user navigated to the page directly (not through a link, but, for example, by using a bookmark). Because this property returns only a string, it doesn't give you document object model (DOM) access to the referring page."
+
+This means you have an easy way of returning the user to the previous page they were on, without needing to hard code the previous page's url! What if the previous page had a value in its URL that you couldn't grab for some reason? Use Document.referrer!`,
 		user_id: 1
 	},
 	{
-		post_title: "test 2",
-		post_content:
-			"In hac habitasse platea dictumst. Maecenas suscipit tellus quis faucibus ullamcorper. Praesent vehicula condimentum ullamcorper. Maecenas volutpat tristique feugiat. Mauris sodales purus ut elit vestibulum pharetra. Sed venenatis mi a nisl euismod, eget auctor tellus consectetur. Suspendisse sem lacus, accumsan nec eros non, pulvinar pretium quam. Maecenas sed condimentum elit. Aenean congue vitae tellus eu hendrerit.",
+		post_title: "CSS animations can add so much fun to your website",
+		post_content: `Do you know what CSS animations are? If you don't, have a read of this (taken from MDN):
+    
+    "CSS animations make it possible to animate transitions from one CSS style configuration to another. Animations consist of two components, a style describing the CSS animation and a set of keyframes that indicate the start and end states of the animation's style, as well as possible intermediate waypoints.
+
+    There are three key advantages to CSS animations over traditional script-driven animation techniques:
+    
+    1. They're easy to use for simple animations; you can create them without even having to know JavaScript.
+    2. The animations run well, even under moderate system load. Simple animations can often perform poorly in JavaScript. The rendering engine can use frame-skipping and other techniques to keep the performance as smooth as possible.
+    3. Letting the browser control the animation sequence lets the browser optimize performance and efficiency by, for example, reducing the update frequency of animations running in tabs that aren't currently visible."
+    
+Neat, right? I bet this would make a website look really dynamic and interesting, but as web designers, we have to remember not to go overboard.`,
 		user_id: 1
 	},
 	{
-		post_title: "text text test",
-		post_content:
-			"Vestibulum non malesuada est, vitae accumsan nulla. Phasellus mauris ligula, tincidunt vel ornare at, porttitor sed turpis. Nam efficitur nulla vitae augue tincidunt luctus. Praesent faucibus id turpis non viverra. Aliquam erat volutpat. Nunc et volutpat ipsum. Sed sit amet velit vel ex auctor malesuada. Aliquam malesuada efficitur eros nec feugiat.",
+		post_title: "What is Object Oriented Programming (OOP)?",
+		post_content: `If you didn't know, check this summary from Tech Target: 
+    
+    "Object-oriented programming (OOP) is a computer programming model that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior."
+    
+    I wonder if there are other programming paradigms out there?`,
 		user_id: 2
 	},
 	{
-		post_title: "laksdflsf yea yeah yea",
-		post_content:
-			"Praesent ultrices semper arcu ac consequat. Morbi luctus pulvinar mi, tempor sagittis turpis. Fusce velit mi, imperdiet ac egestas nec, mollis elementum lacus. Praesent feugiat augue et augue congue, eu efficitur diam pellentesque. Nam condimentum, elit in placerat tincidunt, lacus sapien suscipit tortor, ut rhoncus lacus eros vitae nunc.",
+		post_title: "The difference between Software Engineers and IT Support",
+		post_content: `The other day I got to thinking aren't Software Engineers and IT Support kind of the same? I came across this from Nodeflair, which provides a nice summary:
+    
+    "A software engineer understands design, implementation, and management of software information systems and hardware processes. Whereas, an IT support engineer works on installation, development, and implementation of computer systems and applications."
+    
+What are your thoughts? We all deal with the same kind of thing, don't we?`,
 		user_id: 3
 	}
 ];

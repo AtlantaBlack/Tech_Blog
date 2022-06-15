@@ -3,18 +3,23 @@ const { Comment } = require("../models");
 
 const commentData = [
 	{
-		comment_content: "wow so latin",
+		comment_content: "Very interesting.",
 		user_id: 3,
 		post_id: 1
 	},
 	{
-		comment_content: "i understand this perfectly",
+		comment_content: "Cool content. I had never thought about that before.",
 		user_id: 2,
 		post_id: 1
 	},
 	{
-		comment_content: "did you know that designers use this everywhere?",
+		comment_content: "Neat!",
 		user_id: 1,
+		post_id: 4
+	},
+	{
+		comment_content: "Definitely food for thought.",
+		user_id: 3,
 		post_id: 2
 	}
 ];

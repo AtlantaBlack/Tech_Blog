@@ -1,5 +1,5 @@
-<div class="container card border-blue">
-	<div class="row border-red">
+<div class="container card">
+	<div class="row">
 		<div class="twelve columns">
 			<p class="comment-title">Comment by
 				{{user.username}}
@@ -9,7 +9,7 @@
 
 			{{! determine if user is the one who posted the comment, if yes then show edit button }}
 			{{#if_content_author session_host user_id}}
-				<div class="u-pull-right border-blue">
+				<div class="u-pull-right">
 					<a href="/comments/update/{{id}}" class="button">Edit Comment</a>
 				</div>
 			{{else}}
