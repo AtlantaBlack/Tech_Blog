@@ -30,10 +30,12 @@ a:hover {
 	text-decoration: none;
 }
 
+/* to make cards that are links show black text */
 .card-a {
 	color: var(--black);
 }
 
+/* for anchors disguised as buttons */
 .fake-button:hover {
 	text-decoration: none;
 }
@@ -64,6 +66,8 @@ footer {
 	padding: 1.5rem 0;
 }
 
+/* utility classes, can be mix and matched */
+
 /* to easily align things inline */
 .inline-block {
 	display: inline-block;
@@ -78,6 +82,7 @@ footer {
 	min-height: 30vh;
 }
 
+/* to limit textarea resizing to vertical only */
 .vertical {
 	resize: vertical;
 }
@@ -99,6 +104,7 @@ footer {
 	margin-bottom: 3rem;
 }
 
+/* to add padding to a page's header */
 .heading-block {
 	padding-top: 1.5rem;
 }
@@ -118,10 +124,12 @@ footer {
 	padding: 0 1.5rem;
 }
 
+/* colour change for post titles */
 .post-title {
 	color: var(--mid);
 }
 
+/* styling for segment with content author details */
 .post-author {
 	padding-top: 0.2rem;
 	font-size: 90%;
@@ -129,6 +137,7 @@ footer {
 	margin-bottom: 0;
 }
 
+/* styling for comment header */
 .comment-title {
 	background-color: var(--grey-light);
 	color: var(--deep);
@@ -136,6 +145,7 @@ footer {
 	padding: 0.5rem 2rem;
 }
 
+/* styling for comment card */
 .comment-card {
 	margin: 1.5rem auto;
 	border-radius: 2rem;
@@ -144,26 +154,7 @@ footer {
 	border-bottom: 1px dotted var(--mid-light);
 }
 
+/* for hiding forms, etc */
 .hide {
 	display: none;
-}
-
-.border-red {
-	border: 1px solid red;
-}
-
-.border-blue {
-	border: 1px solid blue;
-}
-
-.border-greenyellow {
-	border: 1px solid greenyellow;
-}
-
-.border-cyan {
-	border: 1px solid cyan;
-}
-
-.border-orange {
-	border: 1px solid orange;
 }
