@@ -3,11 +3,11 @@
   {{!-- link to the post id --}}
   <div class="row card-header bottom-accent">
     {{!-- post title --}}
-    <div class="two-thirds column">
+    <div class="two-thirds column card-body">
       <h5 class="post-title">{{post_title}}</h5>
     </div>
     {{!-- post author --}}
-    <div class="one-third column">
+    <div class="one-third column card-body">
       <h6 class="post-author">posted by {{user.username}}
         <br/>
         <span class="italicised">{{format_date date_created}}</span></h6>
@@ -15,7 +15,7 @@
   </div>
   {{!-- post content --}}
   <div class="row">
-    <div class="twelve columns">
+    <div class="twelve columns card-body">
       <p class="preserve-whitespace">{{post_content}}</p>
     </div>
   </div>
@@ -23,8 +23,8 @@
 
 {{!-- if a user is logged in and they created the blog post, show the update/delete buttons --}}
   {{#if_content_author host user_id}}
-  <div class="u-pull-right">
-    <a href="/posts/update/{{id}}" class="button">Edit Post</a>
+  <div class="u-pull-right card-body">
+    <a href="/posts/update/{{id}}" class="button fake-button">Edit Post</a>
   </div>
 	{{else}}
 		{{! empty space }}
@@ -41,20 +41,20 @@
 {{/if}}
 
 {{!-- add a comment --}}
-<div class="container">
+<div class="container card">
   <div class="row">
-    <div class="twelve columns">        
+    <div class="twelve columns card-body">        
       
       {{#if logged_in}}
       <form id="leave-comment-form">
         <label for="comment-content">Leave a comment:</label>
         <textarea id="comment-content" class="u-full-width"></textarea>
-        <button class="button-primary" type="submit">Post</button>
+        <button class="button-primary custom-btn-primary" type="submit">Post</button>
       </form>        
       {{else}}
       <h5>Want to leave a comment?</h5> 
       <p>Please log in by clicking the button below.</p>
-      <a href="/login" class="button button-primary">Login</a>
+      <a href="/login" class="button button-primary custom-btn-primary fake-button">Login</a>
       {{/if}}
     </div>
   </div>

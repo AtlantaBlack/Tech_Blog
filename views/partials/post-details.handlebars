@@ -1,15 +1,15 @@
 {{! cards for each blog post }}
 <div class="container card">
 	{{! link to the post id }}
-	<a href="/posts/{{id}}">
+	<a href="/posts/{{id}}" class="card-a">
 		<div class="row card-header bottom-accent">
 			{{! post title }}
-			<div class="two-thirds column">
+			<div class="two-thirds column card-body">
 				<h5 class="post-title">{{post_title}}</h5>
 			</div>
 
 			{{! post author }}
-			<div class="one-third column">
+			<div class="one-third column card-body">
 				{{#if is_in_dashboard}}
 					<h6 class="post-author">posted by
 						{{dashboard_user}}
@@ -26,7 +26,7 @@
 
 		{{! post content }}
 		<div class="row">
-			<div class="twelve columns">
+			<div class="twelve columns card-body">
 				<p class="preserve-whitespace">{{post_content}}</p>
 			</div>
 		</div>
@@ -34,8 +34,8 @@
 
 	{{! show update/delete buttons to content author only }}
 	{{#if_content_author session_host user_id}}
-		<div class="u-pull-right">
-			<a href="/posts/update/{{id}}" class="button">Edit Post</a>
+		<div class="u-pull-right card-body">
+			<a href="/posts/update/{{id}}" class="button fake-button">Edit Post</a>
 		</div>
 	{{else}}
 		{{! empty space }}

@@ -1,17 +1,22 @@
 :root {
 	--deep: #2d3142;
 	--mid: #4f5d75;
+	--mid-light: #b3c2df;
 	--grey: #bfc0c0;
+	--grey-light: #e5e5e5;
+	--grey-pale: #f1f1f1;
 	--light: #ffffff;
 	--accent: #ef8354;
 }
 
 a {
-	color: var(--black);
+	color: var(--mid);
+	text-decoration: none;
 }
 
 a:hover {
-	color: var(--deep);
+	color: var(--black);
+	text-decoration: underline;
 }
 
 .custom-a {
@@ -22,6 +27,27 @@ a:hover {
 .custom-a:hover {
 	color: var(--light);
 	border: 2px solid var(--light);
+	text-decoration: none;
+}
+
+.card-a {
+	color: var(--black);
+}
+
+.fake-button:hover {
+	text-decoration: none;
+}
+
+.custom-btn-primary {
+	background-color: var(--mid-light) !important;
+	color: var(--deep) !important;
+	border: 1px solid var(--mid-light) !important;
+}
+
+.custom-btn-primary:hover {
+	background-color: var(--mid) !important;
+	color: var(--light) !important;
+	border: 1px solid var(--mid) !important;
 }
 
 header {
@@ -31,6 +57,11 @@ header {
 
 header h1 {
 	color: var(--light);
+}
+
+footer {
+	text-align: center;
+	padding: 1.5rem 0;
 }
 
 /* to easily align things inline */
@@ -57,18 +88,34 @@ header h1 {
 
 .bottom-accent {
 	border-bottom: 2px solid var(--accent);
+	margin-bottom: 1rem;
 }
 
-.bottom-padding {
+.margin-left {
+	margin-left: 2rem;
+}
+
+.margin-bottom {
 	margin-bottom: 3rem;
 }
 
+.heading-block {
+	padding-top: 1.5rem;
+}
+
 .card {
+	padding: 1rem 0;
 	margin: 1.5rem auto;
+	border-radius: 2rem;
+	box-shadow: 0.2rem 0.2rem 0.8rem var(--grey-light);
 }
 
 .card-header {
 	color: var(--grey);
+}
+
+.card-body {
+	padding: 0 1.5rem;
 }
 
 .post-title {
@@ -76,15 +123,25 @@ header h1 {
 }
 
 .post-author {
+	padding-top: 0.2rem;
 	font-size: 90%;
 	text-align: right;
-	padding-top: 0.5rem;
 	margin-bottom: 0;
 }
 
 .comment-title {
-	background-color: var(--grey);
+	background-color: var(--grey-light);
 	color: var(--deep);
+	border-radius: 2rem 2rem 0 0;
+	padding: 0.5rem 2rem;
+}
+
+.comment-card {
+	margin: 1.5rem auto;
+	border-radius: 2rem;
+	border-left: 1px dotted var(--mid-light);
+	border-right: 1px dotted var(--mid-light);
+	border-bottom: 1px dotted var(--mid-light);
 }
 
 .hide {
