@@ -34,7 +34,7 @@ Neat, right? I bet this would make a website look really dynamic and interesting
     
     "Object-oriented programming (OOP) is a computer programming model that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior."
     
-    I wonder if there are other programming paradigms out there?`,
+I wonder if there are other programming paradigms out there?`,
 		user_id: 2
 	},
 	{

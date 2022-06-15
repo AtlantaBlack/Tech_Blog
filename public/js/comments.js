@@ -13,6 +13,11 @@ const addNewComment = async (event) => {
 	// use the url to get the post id
 	const postId = window.location.toString().split("/").pop().split("?")[0];
 
+	if (!commentContent) {
+		alert("Don't forget to write your comment.");
+		return;
+	}
+
 	if (commentContent) {
 		const response = await fetch("/api/comments", {
 			method: "POST",

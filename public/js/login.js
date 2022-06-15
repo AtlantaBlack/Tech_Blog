@@ -9,6 +9,11 @@ const logTheUserIn = async (event) => {
 	const email = document.getElementById("email-login").value.trim();
 	const password = document.getElementById("password-login").value.trim();
 
+	if (!email || !password) {
+		alert("Please make sure email and passwords are correct.");
+		return;
+	}
+
 	if (email && password) {
 		const response = await fetch("/api/users/login", {
 			method: "POST",

@@ -18,6 +18,11 @@ const addNewBlogPost = async (event) => {
 	const postTitle = document.getElementById("post-title").value.trim();
 	const postContent = document.getElementById("post-content").value.trim();
 
+	if (!postTitle || !postContent) {
+		alert("Please ensure your post includes both a title and content.");
+		return;
+	}
+
 	if (postTitle && postContent) {
 		const response = await fetch("/api/posts", {
 			method: "POST",

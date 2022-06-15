@@ -10,6 +10,11 @@ const signTheUserUp = async (event) => {
 	const email = document.getElementById("email-signup").value.trim();
 	const password = document.getElementById("password-signup").value.trim();
 
+	if (!username || !email || !password) {
+		alert("Please enter a valid username, email, and password.");
+		return;
+	}
+
 	if (username && email && password) {
 		const response = await fetch("api/users", {
 			method: "POST",
