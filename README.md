@@ -36,11 +36,11 @@ This application uses the following technologies:
 
 ## Installation
 
-Using **[The Tech Blog deployed on Heroku]()** does not require any installation.
+Using **[The Tech Blog deployed on Heroku](https://limitless-dusk-59496.herokuapp.com/)** does not require any installation.
 
 ## Usage
 
-View the **[deployed application on Heroku]()**!
+View the **[deployed application on Heroku](https://limitless-dusk-59496.herokuapp.com/)**!
 
 As a guest you are able to view the blog posts on the front page. Sign up in order to create your own posts and comment on other people's posts.
 
@@ -86,6 +86,7 @@ This project is licensed under the [MIT License](./LICENSE.txt).
 
 ## Resources
 
+- [Heroku](https://heroku.com)
 - [MDN Web Docs](https://developer.mozilla.org/en-US/docs)
 - [Stack Overflow: Nested Includes in Sequelize](https://stackoverflow.com/questions/33941943/nested-include-in-sequelize)
 - [Stack Overflow: Unique email address with Sequelize](https://stackoverflow.com/questions/48499487/unique-email-address-with-sequelize)
