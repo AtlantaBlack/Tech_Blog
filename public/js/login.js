@@ -1,3 +1,4 @@
+// login form
 const loginForm = document.getElementById("login-form");
 
 // login form handler
@@ -7,9 +8,6 @@ const logTheUserIn = async (event) => {
 	// get content values
 	const email = document.getElementById("email-login").value.trim();
 	const password = document.getElementById("password-login").value.trim();
-
-	// console.log(`\n----LOGIN ROUTE: EMAIL`);
-	// console.log(email);
 
 	if (email && password) {
 		const response = await fetch("/api/users/login", {
@@ -26,4 +24,5 @@ const logTheUserIn = async (event) => {
 	}
 };
 
+// add event listeners
 loginForm.addEventListener("submit", logTheUserIn);

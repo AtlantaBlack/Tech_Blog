@@ -21,9 +21,6 @@ router.get("/", async (req, res) => {
 // post a new blog post
 router.post("/", withAuth, async (req, res) => {
 	try {
-		// console.log(`\n---POST ROUTE: POST NEW BLOG`);
-		// console.log(req.body);
-
 		// get contents out of req.body
 		const { postTitle, postContent } = req.body;
 
@@ -33,9 +30,6 @@ router.post("/", withAuth, async (req, res) => {
 			post_content: postContent,
 			user_id: req.session.user_id
 		});
-
-		// console.log(`\n---POST ROUTE: NEW POST DATA`);
-		// console.log(newPost);
 
 		res.status(200).json(newPost);
 	} catch (error) {
@@ -66,9 +60,6 @@ router.put("/:id", withAuth, async (req, res) => {
 			}
 		);
 
-		// console.log(`\n---POST ROUTE: UPDATE POST DATA`);
-		// console.log(updatedPost);
-
 		res.status(200).json(updatedPost);
 	} catch (error) {
 		console.log(`\n---POST ROUTE: UPDATE POST ID ERROR`);
@@ -80,8 +71,10 @@ router.put("/:id", withAuth, async (req, res) => {
 // delete a blog post
 router.delete("/:id", withAuth, async (req, res) => {
 	try {
+		// get post id
 		const postId = req.params.id;
 
+		// delete the post
 		const deletedPost = await Post.destroy({
 			where: {
 				id: postId

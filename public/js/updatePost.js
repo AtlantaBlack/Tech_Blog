@@ -58,5 +58,4 @@ const deleteBlogPost = async () => {
 
 // add event listeners
 updatePostForm.addEventListener("submit", updateBlogPost);
-
 deletePostButton.addEventListener("click", deleteBlogPost);

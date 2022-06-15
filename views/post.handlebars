@@ -8,7 +8,9 @@
     </div>
     {{!-- post author --}}
     <div class="one-third column border-orange">
-      <h6 class="post-author">posted by {{user.username}} on {{format_date date_created}}</h6>
+      <h6 class="post-author">posted by {{user.username}}
+        <br/>
+        <span class="italicised">{{format_date date_created}}</span></h6>
     </div>
   </div>
   {{!-- post content --}}

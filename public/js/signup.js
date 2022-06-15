@@ -1,27 +1,29 @@
-// NOT IN USE YET
+// sign up form
+const signUpForm = document.getElementById("signup-form");
 
+// sign up form handler
 const signTheUserUp = async (event) => {
-  event.preventDefault();
+	event.preventDefault();
 
-  const username = document.getElementById("username-signup").value.trim();
-  const email = document.getElementById("email-signup").value.trim();
-  const password = document.getElementById("password-signup").value.trim();
+	// get values
+	const username = document.getElementById("username-signup").value.trim();
+	const email = document.getElementById("email-signup").value.trim();
+	const password = document.getElementById("password-signup").value.trim();
 
-  if (username && email && password) {
-    const response = await fetch("api/users", {
-      method: "POST",
-      body: JSON.stringify({ username, email, password }),
-      headers: { "Content-Type": "application/json" }
-    });
+	if (username && email && password) {
+		const response = await fetch("api/users", {
+			method: "POST",
+			body: JSON.stringify({ username, email, password }),
+			headers: { "Content-Type": "application/json" }
+		});
 
-    if (response.ok) {
-      document.location.replace("/");
-    } else {
-      alert("Sign up failed.");
-    }
-  }
+		if (response.ok) {
+			document.location.replace("/");
+		} else {
+			alert("Sign up failed.");
+		}
+	}
 };
 
-document
-  .getElementById("signup-form")
-  .addEventListener("submit", signTheUserUp);
+// add event listeners
+signUpForm.addEventListener("submit", signTheUserUp);

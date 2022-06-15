@@ -35,6 +35,6 @@ const addNewBlogPost = async (event) => {
 	}
 };
 
+// add event listeners
 toggleFormButton.addEventListener("click", showBlogPostForm);
-
 newPostForm.addEventListener("submit", addNewBlogPost);

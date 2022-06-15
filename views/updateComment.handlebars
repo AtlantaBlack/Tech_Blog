@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">
+		<div class="twelve columns">
+
+			<h5>Update or delete your comment:</h5>
+
+			<p>Edit your comment here.</p>
+
+			{{! pass in old comment content for convenience }}
+			<form id="update-comment-form">
+				<label for="comment-content">Update comment content:</label>
+				<textarea
+					id="comment-content"
+					class="u-full-width vh-30"
+					placeholder="Comment content here"
+				>{{comment_content}}</textarea>
+
+				<button class="button button-primary" type="submit">
+					Update Comment
+				</button>
+
+				<button class="button" id="delete-comment-button" type="button">
+					Delete Comment
+				</button>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<script src="/js/updateComment.js"></script>

@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
 
-// get all users
+// get all users (for testing)
 router.get("/", async (req, res) => {
 	try {
+		// find all users
 		const userData = await User.findAll({
 			include: [{ model: Post }, { model: Comment }]
 		});
@@ -15,22 +16,21 @@ router.get("/", async (req, res) => {
 });
 
 // posting to api/users
+
+// sign up the user
 router.post("/", async (req, res) => {
 	try {
-		// console.log(`\n---REQ.BODY SIGNUP?`)
-		// console.log(req.body);
-
+		// get values out of req.body
 		const { username, email, password } = req.body;
 
+		// if all present, proceed with sign up
 		if (username && email && password) {
+			// create user
 			const newUser = await User.create(req.body);
-
+			// save a new session
 			req.session.save(() => {
-				req.session.user_id = newUser.id;
-				req.session.logged_in = true;
-
-				// console.log(`\n---REQ.SESSION NEW USER`);
-				// console.log(newUser);
+				req.session.user_id = newUser.id; // add user_id
+				req.session.logged_in = true; // add logged_in status
 
 				res.status(200).json(newUser);
 			});
@@ -40,47 +40,46 @@ router.post("/", async (req, res) => {
 			);
 		}
 	} catch (error) {
-		// console.log(`\n---ERROR:`);
-		// console.log(error);
+		console.log(`\n---USER ROUTE: SIGN UP ERROR:`);
+		console.log(error);
 		res.status(500).json(error);
 	}
 });
 
+// log user in
 router.post("/login", async (req, res) => {
 	try {
+		// get values
 		const { email, password } = req.body;
 
-		// console.log(`\n---USER_ROUTE LOGIN: EMAIL/PASSWORD`);
-		// console.log(email);
-		// console.log(password);
-
+		// find a user that matches email
 		const returningUser = await User.scope("withPassword").findOne({
 			where: {
 				email: email
 			}
 		});
-
-		// console.log(`\n----RETURNING USER`);
-		// console.log(returningUser);
-
+		// send error if user not found
 		if (!returningUser) {
 			return res.status(400).json({
 				message: "Incorrect email. Please try again."
 			});
 		}
 
+		// match the password
 		const userPassword = await returningUser.checkPassword(password);
 
+		// if password doesn't match, send error
 		if (!userPassword) {
 			return res.status(400).json({
 				message: "Incorrect password. Please try again."
 			});
 		}
 
+		// if all good, save the session
 		req.session.save(() => {
-			req.session.user_id = returningUser.id;
-			req.session.logged_in = true;
-
+			req.session.user_id = returningUser.id; // set user_id
+			req.session.logged_in = true; // set logged_in status
+			// send a backend msg
 			const { username } = returningUser;
 			const welcomeMsg = `Welcome back, ${username}!`;
 			res.status(200).json({
@@ -88,12 +87,13 @@ router.post("/login", async (req, res) => {
 			});
 		});
 	} catch (error) {
-		// console.log(`\n------ERROR:`);
-		// console.log(error);
+		console.log(`\n---USER ROUTE: LOGIN ERROR:`);
+		console.log(error);
 		res.status(500).json(error);
 	}
 });
 
+// log user out
 router.post("/logout", (req, res) => {
 	if (req.session.logged_in) {
 		req.session.destroy(() => {

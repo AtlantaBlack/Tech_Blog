@@ -16,16 +16,8 @@ router.get("/", async (req, res) => {
 			order: [["id", "DESC"]] // order descending by post ID
 		});
 
-		// console.log(`\n---HOME ROUTE: ALL POSTS DATA`);
-		// console.log(postData);
-
 		// map posts
 		const posts = postData.map((post) => post.get({ plain: true }));
-
-		// const host = req.session.user_id;
-
-		// console.log(`\n---HOME ROUTE: ALL POSTS (mapped) DATA`);
-		// console.log(posts);
 
 		res.render("homepage", {
 			posts,
@@ -43,6 +35,7 @@ router.get("/posts/:id", async (req, res) => {
 	try {
 		// get post id
 		const postId = req.params.id;
+
 		// get post data
 		const postData = await Post.findByPk(postId, {
 			include: [
@@ -52,6 +45,7 @@ router.get("/posts/:id", async (req, res) => {
 				}
 			]
 		});
+
 		// get associated comment data
 		const commentData = await Comment.findAll({
 			where: {
@@ -62,6 +56,7 @@ router.get("/posts/:id", async (req, res) => {
 				attributes: ["username"]
 			}
 		});
+
 		// map the selected post
 		const selectedPost = postData.get({ plain: true });
 		// map the post's comments
@@ -71,6 +66,7 @@ router.get("/posts/:id", async (req, res) => {
 
 		// get the host of the session (ie logged-in user)
 		const host = req.session.user_id;
+
 		// get their user data
 		const userData = await User.findByPk(req.session.user_id, {
 			include: [{ model: Post }, { model: Comment }]
@@ -79,12 +75,6 @@ router.get("/posts/:id", async (req, res) => {
 		// if there's user data available (ie. user is logged in)
 		if (userData) {
 			const user = userData.get({ plain: true });
-
-			// console.log(`\n---HOME ROUTE: SELECTED POST`);
-			// console.log(selectedPost);
-
-			// console.log(`\n---HOME ROUTE: COMMENTS`);
-			// console.log(postComments);
 
 			res.render("post", {
 				...user, // send user info to hbs
@@ -113,6 +103,7 @@ router.get("/posts/update/:id", withAuth, async (req, res) => {
 	try {
 		// get specific post id
 		const postId = req.params.id;
+
 		// find the post info
 		const postData = await Post.findByPk(postId, {
 			include: [
@@ -122,11 +113,9 @@ router.get("/posts/update/:id", withAuth, async (req, res) => {
 				}
 			]
 		});
+
 		// map data
 		const selectedPost = postData.get({ plain: true });
-
-		// console.log(`\n---HOME ROUTE: UPDATE SELECTED POST`);
-		// console.log(selectedPost);
 
 		res.render("updatePost", {
 			...selectedPost,
@@ -139,20 +128,41 @@ router.get("/posts/update/:id", withAuth, async (req, res) => {
 	}
 });
 
+// render the 'update comment' page
+router.get("/comments/update/:id", withAuth, async (req, res) => {
+	try {
+		// get specific comment id
+		const commentId = req.params.id;
+		// find the comment info
+		const commentData = await Comment.findByPk(commentId, {
+			include: [
+				{
+					model: User,
+					attributes: ["username"]
+				}
+			]
+		});
+		// map data
+		const selectedComment = commentData.get({ plain: true });
+
+		res.render("updateComment", {
+			...selectedComment,
+			logged_in: req.session.logged_in
+		});
+	} catch (error) {
+		console.log(`\n---HOME ROUTE: UPDATE COMMENT ID ERROR`);
+		console.log(error);
+		res.status(500).json(error);
+	}
+});
+
 // render the dashboard page
 router.get("/dashboard", withAuth, async (req, res) => {
 	try {
-		// console.log(`\n---HOME ROUTE: REQ SESSION`);
-		// console.log(req.session);
-		// console.log(req.session.user_id);
-
 		// set up a flag to alert hbs that user is in dashboard
 		const dashboardFlag = true;
 		// get session host info
 		const host = req.session.user_id;
-
-		// console.log("\n---HOST");
-		// console.log(host);
 
 		// get user data
 		const userData = await User.findByPk(req.session.user_id, {
@@ -162,9 +172,6 @@ router.get("/dashboard", withAuth, async (req, res) => {
 		});
 		// map user data
 		const user = userData.get({ plain: true });
-
-		// console.log(`\n---HOME ROUTE: USER`);
-		// console.log(user);
 
 		res.render("dashboard", {
 			...user,

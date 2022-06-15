@@ -5,8 +5,6 @@ const leaveCommentForm = document.getElementById("leave-comment-form");
 const addNewComment = async (event) => {
 	event.preventDefault();
 
-	// console.log("COMMENT POST CLICK");
-
 	// get content
 	const commentContent = document
 		.getElementById("comment-content")
@@ -14,8 +12,6 @@ const addNewComment = async (event) => {
 
 	// use the url to get the post id
 	const postId = window.location.toString().split("/").pop().split("?")[0];
-
-	// console.log(postId);
 
 	if (commentContent) {
 		const response = await fetch("/api/comments", {
@@ -34,4 +30,5 @@ const addNewComment = async (event) => {
 	}
 };
 
+// add event listeners
 leaveCommentForm.addEventListener("submit", addNewComment);
