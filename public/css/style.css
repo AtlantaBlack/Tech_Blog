@@ -51,6 +51,10 @@ header h1 {
 	resize: vertical;
 }
 
+.italicised {
+	font-style: italic;
+}
+
 .bottom-accent {
 	border-bottom: 2px solid var(--accent);
 }

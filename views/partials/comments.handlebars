@@ -1,19 +1,25 @@
-{{#each postComments as |comment|}}
-	<div class="container card border-blue">
-		<div class="row border-red">
-			<div class="twelve columns">
-				<p class="comment-title">Comment by
-					{{comment.user.username}}
-					on
-					{{format_date comment.date_created}}</p>
-				<p class="preserve-whitespace">{{comment.comment_content}}</p>
+<div class="container card border-blue">
+	<div class="row border-red">
+		<div class="twelve columns">
+			<p class="comment-title">Comment by
+				{{user.username}}
+				on
+				{{format_date date_created}}</p>
+			<p class="preserve-whitespace">{{comment_content}}</p>
 
-				{{#if logged_in}}
-					{{! if user is logged in, show update/delete buttons }}
-					<a href="/posts/update/{{id}}" class="button">Update Post</a>
-					<a href="/dashboard" class="button" data-id="{{id}}">Delete Post</a>
-				{{/if}}
-			</div>
+			{{! partial variable passing tests }}
+			{{!-- session:host
+			<p>{{session_host}}</p>
+			<p>{{user_id}}</p> --}}
+
+			{{#if_content_author session_host user_id}}
+				<div class="u-pull-right border-blue">
+					<a href="/comments/update/{{id}}" class="button">Edit Comment</a>
+				</div>
+			{{else}}
+				{{! empty space }}
+			{{/if_content_author}}
+
 		</div>
 	</div>
-{{/each}}
+</div>

@@ -39,7 +39,7 @@ router.get("/", async (req, res) => {
 });
 
 // render page to view single post and its comments
-router.get("/post/:id", async (req, res) => {
+router.get("/posts/:id", async (req, res) => {
 	try {
 		// get post id
 		const postId = req.params.id;

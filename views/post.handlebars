@@ -29,9 +29,20 @@
 	{{/if_content_author}}
 </div>
 
+{{!-- testing
+session:host
+<p>{{host}}</p>
+<p>{{user_id}}</p> --}}
+
 {{!-- if there are comments --}}
 {{#if postComments.length}}
-{{> comments}}
+
+{{#each postComments as |comment|}}
+{{!-- pass in extra info:
+  • session host details --}}
+{{> comments session_host=../host}}
+{{/each}}
+
 {{/if}}
 
 

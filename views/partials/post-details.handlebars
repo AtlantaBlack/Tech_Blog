@@ -13,13 +13,13 @@
 				{{#if is_in_dashboard}}
 					<h6 class="post-author">posted by
 						{{dashboard_user}}
-						on
-						{{format_date date_created}}</h6>
+						<br />
+						<span class="italicised">{{format_date date_created}}</span></h6>
 				{{else}}
 					<h6 class="post-author">posted by
 						{{user.username}}
-						on
-						{{format_date date_created}}</h6>
+						<br />
+						<span class="italicised">{{format_date date_created}}</span></h6>
 				{{/if}}
 			</div>
 		</div>
